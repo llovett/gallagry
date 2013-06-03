@@ -1,0 +1,7 @@
+# Python/Django stuff
+*.pyc
+dummy
+
+# Other things
+.swp_emacs
+*~
