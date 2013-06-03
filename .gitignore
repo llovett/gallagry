@@ -1,6 +1,7 @@
 # Python/Django stuff
 *.pyc
 dummy
+upload
 
 # Other things
 .swp_emacs
