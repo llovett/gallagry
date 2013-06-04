@@ -13,3 +13,6 @@ class ImageFrame(models.Model):
 
     title = models.CharField(max_length=500, verbose_name="Title")
     description = models.TextField(blank=True,null=True, verbose_name="Description")
+
+    def __unicode__(self):
+        return self.title if not self.description else "%s - %s..."%(self.title,self.description)
