@@ -3,6 +3,6 @@ from imagespace.models import ImageFrame
 from sorl.thumbnail.admin import AdminImageMixin
 
 class ImageFrameAdmin(admin.ModelAdmin, AdminImageMixin):
-    pass
+    exclude = ('geometry',)
 
 admin.site.register(ImageFrame, ImageFrameAdmin)
