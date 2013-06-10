@@ -9,5 +9,16 @@
 {% endblock %}
 
 {% block content %}
-<!-- TODO: put images and links here -->
+  {% load thumbnail %}
+  {% for image in images %}
+    <!-- image: -->
+    {% thumbnail image.image "{{image.width}}x{{image.height}}" as im %}
+    <!-- anything -->
+    <img src="{{ im.url }}" alt="{{ im.title }}" id="img_{{ im.pk }}" />
+
+    {% empty %}
+    <p>No image to display.</p>
+
+    {% endthumbnail %}
+  {% endfor %}
 {% endblock %}
