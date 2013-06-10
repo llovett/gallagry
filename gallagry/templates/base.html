@@ -15,6 +15,11 @@
     <div id="content">
       {% block content %}{% endblock %}
     </div>
+    {% if request.user.is_superuser %}
+    <div id="footer">
+      <a href="/admin">Admin</a>
+    </div>
+    {% endif %}
   </body>
 
 </html>
