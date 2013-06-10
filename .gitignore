@@ -4,6 +4,7 @@ dummy
 upload
 images
 cache
+gallagry/static
 
 # Other things
 .swp_emacs

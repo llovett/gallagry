@@ -5,6 +5,6 @@ from imagespace import models
 
 def main_page(request):
     images = get_list_or_404(models.ImageFrame, visible=True)
-    return render_to_response('index.html', locals())
+    return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 

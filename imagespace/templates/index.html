@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<!-- TODO: put CSS here to position images -->
   <style type="text/css">
     {% for image in images %}
       #img_{{ image.id }} {
@@ -21,7 +20,9 @@
   {% load thumbnail %}
   {% for image in images %}
     {% thumbnail image.image image.geometry as im %}
-    <img src="{{ im.url }}" alt="{{ im.title }}" id="img_{{ image.id }}" />
+    <a href="{{ image.image.url }}">
+      <img src="{{ im.url }}" alt="{{ im.title }}" id="img_{{ image.id }}" />
+    </a>
 
     {% empty %}
     <p>No image to display.</p>
