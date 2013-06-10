@@ -2,6 +2,15 @@
 
 {% block styles %}
 <!-- TODO: put CSS here to position images -->
+  <style type="text/css">
+    {% for image in images %}
+      #img_{{ image.id }} {
+        position:absolute;
+        top:{{ image.pos_y }}px;
+        left:{{ image.pos_x }}px;
+      }
+    {% endfor %}
+  </style>
 {% endblock %}
 
 {% block header %}
@@ -12,7 +21,7 @@
   {% load thumbnail %}
   {% for image in images %}
     {% thumbnail image.image image.geometry as im %}
-    <img src="{{ im.url }}" alt="{{ im.title }}" id="img_{{ im.pk }}" />
+    <img src="{{ im.url }}" alt="{{ im.title }}" id="img_{{ image.id }}" />
 
     {% empty %}
     <p>No image to display.</p>
