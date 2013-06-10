@@ -97,6 +97,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 
+    'pagespace.middleware.FlatpageFallbackMiddleware',
+
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -122,6 +124,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'imagespace',
+    'pagespace',
     'django.contrib.admin',
     'sorl.thumbnail',
     # Uncomment the next line to enable admin documentation:

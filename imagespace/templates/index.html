@@ -3,11 +3,25 @@
 {% block styles %}
   <style type="text/css">
     {% for image in images %}
-      #img_{{ image.id }} {
-        position:absolute;
-        top:{{ image.pos_y }}px;
-        left:{{ image.pos_x }}px;
-      }
+      {% if image.manual_positioning %}
+        #img_{{ image.id }} {
+          position:absolute;
+          top:{{ image.pos_y }}px;
+          left:{{ image.pos_x }}px;
+        }
+      {% endif %}
+    {% endfor %}
+
+    {% load flatpages %}
+    {% get_flatpages as pages %}
+    {% for page in pages %}
+      {% if page.manual_positioning %}
+        #link_{{ page.id }} {
+          position:absolute;
+          top:{{ page.pos_y }}px;
+          left:{{ page.pos_x }}px;
+        }
+      {% endif %}
     {% endfor %}
   </style>
 {% endblock %}
@@ -18,6 +32,8 @@
 
 {% block content %}
   {% load thumbnail %}
+
+  <!-- images -->
   {% for image in images %}
     {% thumbnail image.image image.geometry as im %}
     <a href="{{ image.image.url }}">
@@ -29,4 +45,11 @@
 
     {% endthumbnail %}
   {% endfor %}
+
+  <!-- flatpages -->
+  {% get_flatpages as pages %}
+  {% for page in pages %}
+  <a href="{{ page.url }}" id="link_{{ page.id }}">{{ page.title }}</a>
+  {% endfor %}
+
 {% endblock %}
