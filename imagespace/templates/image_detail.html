@@ -12,8 +12,10 @@
   <p>{{ image.description }}</p>
 
   <!-- form for purchasing the artwork -->
+  {% load currency %}
   {% if form %}
     <h3>Ordering</h3>
+    <p>You can purchase <em>{{ image.title }}</em> for {{ image.price|to_currency }}.</p>
     {{ form.render }}
   {% endif %}
 
