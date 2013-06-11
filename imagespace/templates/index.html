@@ -49,7 +49,7 @@
   <!-- flatpages -->
   {% get_flatpages as pages %}
   {% for page in pages %}
-  <a href="{{ page.url }}" id="link_{{ page.id }}">{{ page.title }}</a>
+    <a href="{{ page.url }}" id="link_{{ page.id }}">{{ page.title }}</a>
   {% endfor %}
 
 {% endblock %}
