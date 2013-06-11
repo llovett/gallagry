@@ -20,5 +20,5 @@ class ImageFrame(models.Model):
         return self.title if not self.description else "%s - %s..."%(self.title,self.description[:100])
 
     def save(self):
-        self.geometry = "%dx%d"%(self.width,self.height)
+        self.geometry = "%d"%self.width if self.width > self.height else "x%d"%self.height
         super(ImageFrame,self).save()

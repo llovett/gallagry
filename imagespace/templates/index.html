@@ -3,13 +3,15 @@
 {% block styles %}
   <style type="text/css">
     {% for image in images %}
-      {% if image.manual_positioning %}
-        #img_{{ image.id }} {
+      #img_{{ image.id }} {
+        {% if image.manual_positioning %}
           position:absolute;
           top:{{ image.pos_y }}px;
           left:{{ image.pos_x }}px;
-        }
-      {% endif %}
+        {% endif %}
+        width:{{ image.width }}px;
+        height:{{ image.height }}px;
+      }
     {% endfor %}
 
     {% load flatpages %}
