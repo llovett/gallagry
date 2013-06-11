@@ -7,7 +7,7 @@ from sorl.thumbnail.admin import AdminImageMixin
 class ImageFrameAdmin(admin.ModelAdmin, AdminImageMixin):
     form = ImageFrameForm
     fieldsets = (
-        (None, {'fields':('image','title','price','description','visible')}),
+        (None, {'fields':('image','title','price','description','visible','for_sale')}),
         (_('Advanced options'), {'classes':('collapse',), 'fields': ('width',
                                                                      'height',
                                                                      'manual_positioning',

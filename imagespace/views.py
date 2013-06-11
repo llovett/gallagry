@@ -32,6 +32,11 @@ def image_detail(request, image_id):
 def purchase_notify(request, image_id):
     image = get_object_or_404(models.ImageFrame, id=image_id)
     messages.add_message(request, messages.SUCCESS, "Your purchase of %s has been completed."%image.title)
+    
+    # Art has been sold, so not for sale anymore
+    image.for_sale = False
+    image.save()
+
     return reverse("image_detail", args=(image_id,))
 
 def purchase_return(request, image_id):

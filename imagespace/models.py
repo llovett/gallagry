@@ -12,6 +12,7 @@ class ImageFrame(models.Model):
     geometry = models.CharField(max_length=20)
     price = models.DecimalField(max_digits=8,decimal_places=2,default=0, verbose_name="Price")
     visible = models.BooleanField(default=True, verbose_name="Visible")
+    for_sale = models.BooleanField(default=True, verbose_name="For sale")
 
     title = models.CharField(max_length=500, verbose_name="Title")
     description = models.TextField(blank=True,null=True, verbose_name="Description")

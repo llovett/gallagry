@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'sorl.thumbnail',
     'paypal.standard.ipn',
+    'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
