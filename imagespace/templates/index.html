@@ -38,7 +38,7 @@
   <!-- images -->
   {% for image in images %}
     {% thumbnail image.image image.geometry as im %}
-    <a href="{{ image.image.url }}">
+    <a href="{% url image_detail image.id %}">
       <img src="{{ im.url }}" alt="{{ im.title }}" id="img_{{ image.id }}" />
     </a>
 

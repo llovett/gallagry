@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ image.title }}{% endblock %}
+{% block header %}<h2>{{ image.title }}</h2>{% endblock %}
+{% block content %}
+  {% load thumbnail %}
+  {% thumbnail image.image "500" as im %}
+    <a href="{{ image.image.url }}">
+      <img src="{{ im.url }}" alt="{{ im.title }}" />
+    </a>
+  {% endthumbnail %}
+  <p>{{ image.description }}</p>
+
+  <h3>Ordering</h3>
+  <!-- <form method="POST" action="."> -->
+  <!-- TODO: csrf token and form go here -->
+  <!-- </form> -->
+  <a href="{% url main_page %}">Home</a>
+{% endblock %}

@@ -1,5 +1,15 @@
 # Django settings for gallagry project.
 
+# ---------------------------------------
+# Matt --- Configure these to your liking
+
+PAYPAL_RECEIVER_EMAIL = "wolfinsilver@gmail.com"
+
+# ---------------------------------------
+
+
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -127,6 +137,7 @@ INSTALLED_APPS = (
     'pagespace',
     'django.contrib.admin',
     'sorl.thumbnail',
+    'paypal.standard.ipn',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
