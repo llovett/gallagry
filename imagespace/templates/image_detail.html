@@ -2,6 +2,7 @@
 {% block title %}{{ image.title }}{% endblock %}
 {% block header %}<h2>{{ image.title }}</h2>{% endblock %}
 {% block content %}
+  <!-- thumbnail preview of artwork, with link to full-size -->
   {% load thumbnail %}
   {% thumbnail image.image "500" as im %}
     <a href="{{ image.image.url }}">
@@ -10,9 +11,11 @@
   {% endthumbnail %}
   <p>{{ image.description }}</p>
 
-  <h3>Ordering</h3>
-  <!-- <form method="POST" action="."> -->
-  <!-- TODO: csrf token and form go here -->
-  <!-- </form> -->
+  <!-- form for purchasing the artwork -->
+  {% if form %}
+    <h3>Ordering</h3>
+    {{ form.render }}
+  {% endif %}
+
   <a href="{% url main_page %}">Home</a>
 {% endblock %}
