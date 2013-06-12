@@ -1,23 +1,31 @@
 {% extends "base.html" %}
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/image_detail.css" />
+{% endblock %}
 {% block title %}{{ image.title }}{% endblock %}
 {% block header %}<h2>{{ image.title }}</h2>{% endblock %}
 {% block content %}
   <!-- thumbnail preview of artwork, with link to full-size -->
   {% load thumbnail %}
-  {% thumbnail image.image "500" as im %}
-    <a href="{{ image.image.url }}">
-      <img src="{{ im.url }}" alt="{{ im.title }}" />
-    </a>
-  {% endthumbnail %}
-  <p>{{ image.description }}</p>
+  <div id="image_preview">
+    {% thumbnail image.image "500" as im %}
+      <a href="{{ image.image.url }}">
+        <img src="{{ im.url }}" alt="{{ im.title }}" />
+      </a>
+    {% endthumbnail %}
+  </div>
 
-  <!-- form for purchasing the artwork -->
-  {% load currency %}
-  {% if image.for_sale %}
-    <h3>Ordering</h3>
-    <p>You can purchase <em>{{ image.title }}</em> for {{ image.price|to_currency }}.</p>
-    {{ form.render }}
-  {% endif %}
+  <div id="image_details">
+    <p>{{ image.description }}</p>
+  
+    <!-- form for purchasing the artwork -->
+    {% load currency %}
+    {% if image.for_sale %}
+      <h3>Ordering</h3>
+      <p>You can purchase <em>{{ image.title }}</em> for {{ image.price|to_currency }}.</p>
+      {{ form.render }}
+    {% endif %}
+  </div>
 
   <a href="{% url main_page %}">Home</a>
 {% endblock %}

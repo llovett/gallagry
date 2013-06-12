@@ -148,6 +148,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+GRAPPELLI_ADMIN_TITLE = "Gallagry Admin"
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.contrib.auth.context_processors.auth',

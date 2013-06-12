@@ -7,5 +7,4 @@ def settings_processor(request):
         default_color_scheme = ColorScheme.objects.get(is_default=True)
         return {'colorscheme':default_color_scheme}
     except ColorScheme.DoesNotExist:
-        pass
-    
+        return {}

@@ -4,15 +4,15 @@ from django.utils.translation import ugettext_lazy as _
 import datetime
 
 class ColorScheme(models.Model):
+    title = models.CharField(max_length=200, default="Color scheme from %s"%datetime.datetime.now().strftime("%d/%m/%Y at %I:%M %p"))
     background_color = RGBColorField(verbose_name="Background color")
     foreground_color = RGBColorField(verbose_name="Foreground color")
     link_color = RGBColorField(verbose_name="Normal link color")
     rollover_color = RGBColorField(verbose_name="Rollover link color")
     is_default = models.BooleanField(default=True, verbose_name="Make this your default color scheme")
-    last_updated = models.DateTimeField(auto_now=True, default=datetime.datetime.now())
 
     def __unicode__(self):
-        return "Color scheme from %s"%self.last_updated.strftime("%d/%m/%Y at %I:%M %p")
+        return self.title
 
     def save(self):
         if self.is_default:
