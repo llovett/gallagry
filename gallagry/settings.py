@@ -151,6 +151,10 @@ INSTALLED_APPS = (
 
 # Some settings for various installed apps
 GRAPPELLI_ADMIN_TITLE = "Gallagry Admin"
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins':"paste,table,searchreplace",
+    'theme':"advanced"
+}
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',

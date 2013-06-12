@@ -12,7 +12,7 @@ class FlatpageForm(forms.ModelForm):
                           " dots, underscores, dashes, slashes or tildes."))
 
     # Override ugly textfield widget with tinymce
-    content = forms.CharField(widget=TinyMCE(attrs={'cols':80,'rows':30}))
+    content = forms.CharField(widget=TinyMCE(attrs={'cols':80,'rows':50}))
 
     class Meta:
         model = FlatPage
