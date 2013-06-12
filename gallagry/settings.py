@@ -137,6 +137,7 @@ INSTALLED_APPS = (
 
     'imagespace',
     'pagespace',
+    'grappelli',
     'django.contrib.admin',
     'sorl.thumbnail',
     'paypal.standard.ipn',
