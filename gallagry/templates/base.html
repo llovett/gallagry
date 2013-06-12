@@ -4,6 +4,20 @@
   <head>
     <title>{% block title %}Matthew Gallagher{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
+    {% if colorscheme %}
+      <style type="text/css">
+        body, html {
+          background-color:{{ colorscheme.background_color }};
+          color:{{ colorscheme.foreground_color }};
+        }
+        a {
+          color:{{ colorscheme.link_color }};
+        }
+        a:hover {
+          color:{{ colorscheme.rollover_color }};
+        }
+      </style>
+    {% endif %}
     {% block styles %}{% endblock %}
     {% block scripts %}{% endblock %}
   </head>

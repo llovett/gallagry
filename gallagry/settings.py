@@ -140,7 +140,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'sorl.thumbnail',
     'paypal.standard.ipn',
-    'south',
+    # 'south',
+    'colorful',
+    'settings',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -149,6 +151,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.static',
+    'settings.template_processors.settings_processor',
 )
 
 # A sample logging configuration. The only tangible logging
