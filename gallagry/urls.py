@@ -14,7 +14,8 @@ urlpatterns = patterns(
 
     url(r'^art/', include('imagespace.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^grappelli/', include('grappelli.urls')),
+    url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 
     # Default page redirects to gallery
     url(r'^$', redirect_to, {'url':'/art/'}),

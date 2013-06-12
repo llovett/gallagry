@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'sorl.thumbnail',
     'paypal.standard.ipn',
+    'tinymce',
     # 'south',
     'colorful',
     'settings',
@@ -148,6 +149,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+# Some settings for various installed apps
 GRAPPELLI_ADMIN_TITLE = "Gallagry Admin"
 
 TEMPLATE_CONTEXT_PROCESSORS = (

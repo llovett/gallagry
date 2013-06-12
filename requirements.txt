@@ -3,5 +3,6 @@ PIL==1.1.7
 South==0.8.1
 django-grappelli==2.4.5
 django-paypal==0.1.2
+django-tinymce==1.5.1
 sorl-thumbnail==11.12
 wsgiref==0.1.2
