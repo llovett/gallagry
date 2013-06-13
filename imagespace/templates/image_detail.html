@@ -27,3 +27,9 @@
     {% endif %}
   </div>
 {% endblock %}
+
+{% block page_edit_link %}
+  {% if request.user.is_superuser %}
+    <a href="{% url admin:imagespace_imageframe_change image.id %}">edit</a>
+  {% endif %}
+{% endblock %}

@@ -4,6 +4,7 @@
   <head>
     <title>{% block title %}Matthew Gallagher{% endblock %}</title>
     <link href="http://fonts.googleapis.com/css?family=Nobile:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    <!-- main.css lives in the imagespace app -->
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
     {% if colorscheme %}
       <style type="text/css">
@@ -20,6 +21,7 @@
       </style>
     {% endif %}
     {% block styles %}{% endblock %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     {% block scripts %}{% endblock %}
   </head>
   
@@ -32,12 +34,10 @@
 	{% block content %}{% endblock %}
       </div>
       <div id="footer">
-	{% if request.user.is_superuser %}
-	<a href="/admin">Admin</a>
-	{% endif %}
+	{% block page_edit_link %}{% endblock %}
 	{% url main_page as main_page_url %}
 	{% if request.path != main_page_url %}
-        <a href="{{ main_page_url }}">Home</a>
+          <a href="{{ main_page_url }}">Home</a>
 	{% endif %}
       </div>
     </div>

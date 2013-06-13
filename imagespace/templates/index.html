@@ -28,6 +28,12 @@
   </style>
 {% endblock %}
 
+{% block scripts %}
+  {% if request.user.is_superuser %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/edits.js"></script>
+  {% endif %}
+{% endblock %}
+
 {% block header %}
 <h1>Matthew Gallagher</h1>
 {% endblock %}
@@ -36,16 +42,20 @@
   {% load thumbnail %}
 
   <!-- images -->
+  {% load admin_urls %}
   {% for image in images %}
-    {% thumbnail image.image image.geometry as im %}
-    <a href="{% url image_detail image.id %}">
-      <img src="{{ im.url }}" alt="{{ image.title }}" id="img_{{ image.id }}" />
-    </a>
-
-    {% empty %}
-    <p>No image to display.</p>
-
-    {% endthumbnail %}
+    <div id="img_{{ image.id }}">
+      {% if request.user.is_superuser %}
+        <a href="{% url admin:imagespace_imageframe_change image.id %}" class="edit_link">edit</a>
+      {% endif %}
+      <a href="{% url image_detail image.id %}">
+	{% thumbnail image.image image.geometry as im %}
+	  <img src="{{ im.url }}" alt="{{ image.title }}" class="gallery_image" />
+	{% empty %}
+	  <p>No image to display.</p>
+	{% endthumbnail %}
+      </a>
+    </div>
   {% endfor %}
 
   <!-- flatpages -->
@@ -54,4 +64,10 @@
     <a href="{{ page.url }}" id="link_{{ page.id }}">{{ page.title }}</a>
   {% endfor %}
 
+{% endblock %}
+
+{% block page_edit_link %}
+  {% if request.user.is_superuser %}
+    <a href="/admin">edit</a>
+  {% endif %}
 {% endblock %}

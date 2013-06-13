@@ -99,3 +99,17 @@ body, html {
     background-color:white;
     color:black;
 }
+
+.edit_link {
+    display:none;
+    position:absolute;
+    top:0px;
+    left:0px;
+    z-index:100;
+}
+
+.gallery_image {
+    position:absolute;
+    top:0px;
+    left:0px;
+}
