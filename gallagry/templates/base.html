@@ -29,11 +29,15 @@
     <div id="content">
       {% block content %}{% endblock %}
     </div>
-    {% if request.user.is_superuser %}
     <div id="footer">
+      {% if request.user.is_superuser %}
       <a href="/admin">Admin</a>
+      {% endif %}
+      {% url main_page as main_page_url %}
+      {% if request.path != main_page_url %}
+        <a href="{{ main_page_url }}">Home</a>
+      {% endif %}
     </div>
-    {% endif %}
   </body>
 
 </html>
