@@ -38,7 +38,7 @@
       </div>
       {% url main_page as main_page_url %}
       {% if request.path != main_page_url %}
-        <a href="{{ main_page_url }}">Home</a>
+        <a href="{{ main_page_url }}" class="home_link">Home</a>
       {% endif %}
     </div>
   </body>

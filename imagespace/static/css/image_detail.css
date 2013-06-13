@@ -6,3 +6,11 @@
 #image_details {
     padding-left:10px;
 }
+
+#artwork_sale {
+    margin-top:15px;
+}
+
+#artwork_sale form {
+    margin:15px 0 15px 0;
+}

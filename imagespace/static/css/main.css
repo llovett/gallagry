@@ -48,6 +48,7 @@ table {
 }
 /****** END CSS RESET ******/
 
+
 /****** BEGIN OBVIOUS ******/
 h1 {
     font-size:2.2em;
@@ -82,6 +83,12 @@ ol {
 }
 /****** END OBVIOUS ******/
 
+
+
+
+
+
+/****** BLOCK STYLES ******/
 body, html {
     width:100%;
     height:100%;
@@ -99,7 +106,21 @@ body, html {
     background-color:white;
     color:black;
 }
+/****** END BLOCK STYLES ******/
 
+
+/****** ELEMENT STYLES ******/
+a {
+    text-decoration:none;
+}
+
+h1, h2, h3 {
+    margin-bottom:0.28em;
+}
+/****** END ELEMENT STYLES ******/
+
+
+/****** CLASS STYLES ******/
 .edit_link, .hovering_edit_link, .edit_link:hover, .hovering_edit_link:hover {
     color:black;
     background-color:white;
@@ -124,3 +145,8 @@ body, html {
     top:0px;
     left:0px;
 }
+
+.home_link {
+    /* style for home link goes here! */
+}
+/****** END CLASS STYLES ******/
