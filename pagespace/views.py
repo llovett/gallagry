@@ -7,7 +7,10 @@ from django.core.xheaders import populate_xheaders
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
 
-DEFAULT_TEMPLATE = 'flatpages/default.html'
+try:
+    template = settings.FLATPAGES_TEMPLATE
+except AttributeError:
+    template = 'flatpages/default.html'
 
 # This view is called from FlatpageFallbackMiddleware.process_response
 # when a 404 is raised, which often means CsrfViewMiddleware.process_view
@@ -47,7 +50,7 @@ def render_flatpage(request, f):
     Internal interface to the flat page view.
     """
     # Always use the default template
-    t = loader.get_template(DEFAULT_TEMPLATE)
+    t = loader.get_template(template)
 
     # To avoid having to always use the "|safe" filter in flatpage templates,
     # mark the title and content as already safe (since they are raw HTML

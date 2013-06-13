@@ -1,10 +1,7 @@
 from django import template
-from django.conf import settings
 from pagespace.models import FlatPage
 
-
 register = template.Library()
-
 
 class FlatpageNode(template.Node):
     def __init__(self, context_name, starts_with=None, user=None):

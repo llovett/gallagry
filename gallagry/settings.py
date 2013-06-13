@@ -155,6 +155,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'plugins':"paste,table,searchreplace",
     'theme':"advanced"
 }
+FLATPAGES_TEMPLATE = "pagespace_template.html"
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',

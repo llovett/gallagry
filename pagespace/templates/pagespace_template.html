@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Matthew Gallagher - {{ flatpage.title }}{% endblock %}
+{% block header %}
+  <h2>{{ flatpage.title }}</h2>
+{% endblock %}
+{% block content %}
+  <p>{{ flatpage.content }}</p>
+{% endblock %}
+{% block page_edit_link %}
+  <a href="{% url admin:pagespace_flatpage_change flatpage.id %}" class="edit_link">edit</a>
+{% endblock %}
