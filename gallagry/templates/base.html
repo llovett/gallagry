@@ -33,13 +33,13 @@
       <div id="content">
 	{% block content %}{% endblock %}
       </div>
-      <div id="footer">
+      <div id="panel">
 	{% block page_edit_link %}{% endblock %}
-	{% url main_page as main_page_url %}
-	{% if request.path != main_page_url %}
-          <a href="{{ main_page_url }}">Home</a>
-	{% endif %}
       </div>
+      {% url main_page as main_page_url %}
+      {% if request.path != main_page_url %}
+        <a href="{{ main_page_url }}">Home</a>
+      {% endif %}
     </div>
   </body>
 

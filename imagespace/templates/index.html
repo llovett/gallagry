@@ -46,7 +46,7 @@
   {% for image in images %}
     <div id="img_{{ image.id }}">
       {% if request.user.is_superuser %}
-        <a href="{% url admin:imagespace_imageframe_change image.id %}" class="edit_link">edit</a>
+        <a href="{% url admin:imagespace_imageframe_change image.id %}" class="hovering_edit_link">edit</a>
       {% endif %}
       <a href="{% url image_detail image.id %}">
 	{% thumbnail image.image image.geometry as im %}
@@ -68,6 +68,6 @@
 
 {% block page_edit_link %}
   {% if request.user.is_superuser %}
-    <a href="/admin">edit</a>
+    <a href="/admin" class="edit_link">edit</a>
   {% endif %}
 {% endblock %}
