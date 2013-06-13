@@ -29,17 +29,9 @@ class FlatpageForm(forms.ModelForm):
 
     def clean(self):
         url = self.cleaned_data.get('url', None)
-        sites = self.cleaned_data.get('sites', None)
 
         same_url = FlatPage.objects.filter(url=url)
         if self.instance.pk:
             same_url = same_url.exclude(pk=self.instance.pk)
-
-        if same_url.filter(sites__in=sites).exists():
-            for site in sites:
-                if same_url.filter(sites=site).exists():
-                    raise forms.ValidationError(
-                        _('Flatpage with url %(url)s already exists for site %(site)s' %
-                          {'url': url, 'site': site}))
 
         return super(FlatpageForm, self).clean()
