@@ -7,9 +7,19 @@ from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from imagespace import models
 from imagespace.utils import random_string
+from pagespace.models import GalleryLinkPosition
 
 def main_page(request):
-    images = get_list_or_404(models.ImageFrame, visible=True)
+#    images = get_list_or_404(models.ImageFrame, visible=True)
+    gallery_link_x = gallery_link_y = 500
+    gallery_link_rot = 0
+    try:
+        gallery_link = GalleryLinkPosition.objects.get(is_default=True)
+        gallery_link_x = gallery_link.pos_x
+        gallery_link_y = gallery_link.pos_y
+        gallery_link_rot = gallery_link.rotation
+    except GalleryLinkPosition.DoesNotExist:
+        pass
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def image_detail(request, image_id):

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pagespace.models import FlatPage
+from pagespace.models import FlatPage, GalleryLinkPosition
 from django.utils.translation import ugettext_lazy as _
 from pagespace.forms import FlatpageForm
 
@@ -15,4 +15,8 @@ class FlatPageAdmin(admin.ModelAdmin):
     list_display = ('url', 'title')
     search_fields = ('url', 'title')
 
+class GLPositionAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(FlatPage, FlatPageAdmin)
+admin.site.register(GalleryLinkPosition, GLPositionAdmin)

@@ -23,6 +23,12 @@
         left:{{ page.pos_x }}px;
       }
     {% endfor %}
+    #gallery_link {
+      position:absolute;
+      left:{{ gallery_link_x }}px;
+      top:{{ gallery_link_y }}px;
+      /* todo: gallery link rotation! */
+    }
   </style>
 
   {% if bgimage %}
@@ -70,6 +76,9 @@
   {% for page in pages %}
     <a href="{{ page.url }}" id="link_{{ page.id }}">{{ page.title }}</a>
   {% endfor %}
+
+  <!-- gallery link, TODO: fill in gallery URL -->
+  <a href="#" id="gallery_link">gallery</a>
 
 {% endblock %}
 
