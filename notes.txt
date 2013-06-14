@@ -1,0 +1,15 @@
+GALLAGRY NOTES
+-------------------------------
+
+index page first --- then go to artwork, bio, contact, etc.
+some kind of motion in the gallery --- marquees?
+homepage ---
+	+ choose background image
+	+ choose placement, rotation, color, size of link to pages
+more static way of viewing the gallery --- horizonally aligned?
+	+ scale to same height
+	+ minimal, professional
+image detail ---
+	+ should be able to see high-res image
+	+ actually looks pretty good as-is
+any page can link to any other page

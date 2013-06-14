@@ -43,6 +43,7 @@
 
   <!-- images -->
   {% load admin_urls %}
+  <marquee direction="left" behavior="slide">
   {% for image in images %}
     <div id="img_{{ image.id }}">
       {% if request.user.is_superuser %}
@@ -57,6 +58,7 @@
       </a>
     </div>
   {% endfor %}
+  </marquee>
 
   <!-- flatpages -->
   {% get_flatpages as pages %}

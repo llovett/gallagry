@@ -21,3 +21,18 @@ class ColorScheme(models.Model):
                 scheme.is_default = False
                 scheme.save()
         super(ColorScheme,self).save()
+
+class BackgroundImage(models.Model):
+    background_image = models.ImageField(upload_to='images')
+    is_default = models.BooleanField(default=True, verbose_name="Make this your default background")
+
+    def __unicode__(self):
+        return self.background_image.name
+
+    def save(self):
+        if self.is_default:
+            other_imgs = BackgroundImage.objects.exclude(id=self.id)
+            for img in other_imgs:
+                img.is_default = False
+                img.save()
+        super(BackgroundImage,self).save()
