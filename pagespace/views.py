@@ -7,10 +7,7 @@ from django.core.xheaders import populate_xheaders
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
 
-try:
-    template = settings.FLATPAGES_TEMPLATE
-except AttributeError:
-    template = 'flatpages/default.html'
+template = 'flatpages/default.html'
 
 # This view is called from FlatpageFallbackMiddleware.process_response
 # when a 404 is raised, which often means CsrfViewMiddleware.process_view

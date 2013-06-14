@@ -6,3 +6,7 @@
 .gallery_image_item {
     display:inline;
 }
+
+#navigation {
+    margin-top:10px;
+}
