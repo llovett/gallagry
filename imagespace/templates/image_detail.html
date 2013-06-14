@@ -36,3 +36,10 @@
     <a href="{% url admin:imagespace_imageframe_change image.id %}" class="edit_link">edit</a>
   {% endif %}
 {% endblock %}
+
+{% block navigation %}
+  <ul>
+    <li><a href="{% url galleries_show gallery.id %}">{{ gallery.title }}</a></li>
+    <li><a href="{% url main_page %}" class="home_link">Home</a></li>
+  </ul>
+{% endblock %}

@@ -135,7 +135,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'imagespace',
+#    'imagespace',
     'galleries',
     'pagespace',
     'grappelli',

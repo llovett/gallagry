@@ -12,11 +12,12 @@ def galleries_index(request):
     return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request))
 
 def galleries_show(request, gallery_id):
-    gallery = models.Gallery.objects.get(id=gallery_id)
+    gallery = get_object_or_404(models.Gallery,id=gallery_id)
     all_images = get_list_or_404(models.Image, gallery=gallery)
     return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request))
 
 def image_show(request, gallery_id, image_id):
+    gallery = get_object_or_404(models.Gallery, id=gallery_id)
     image = get_object_or_404(models.Image, id=image_id)
     # Paypal form info
     paypal_dict = {
