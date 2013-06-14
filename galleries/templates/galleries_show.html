@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ gallery.title }}{% endblock %}
-{% block styles %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery.css" />{% endblock %}
+{% block styles %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery_show.css" />{% endblock %}
+{% block scripts %}<script type="text/javascript" src="{{ STATIC_URL }}js/image_show.js"></script>{% endblock %}
 {% block header %}<h2>{{ gallery.title }}</h2>{% endblock %}
 {% block content %}
   {% if gallery.description|length > 0 %}
@@ -11,7 +12,7 @@
   {% load thumbnail %}
   <ul class="gallery_images">
     {% for img in all_images %}
-      <li class="gallery_image">
+      <li class="gallery_image_item">
 	<a href="{% url image_show gallery.id img.id %}">
           {% thumbnail img.image "x500" as im %}
             <img src="{{ im.url }}" alt="{{ img.title }}" class="gallery_image" />

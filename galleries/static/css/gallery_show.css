@@ -1,0 +1,8 @@
+.gallery_image, .gallery_image_item {
+    padding:0 2px;
+    margin:0;
+}
+
+.gallery_image_item {
+    display:inline;
+}
