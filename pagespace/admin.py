@@ -7,10 +7,10 @@ class FlatPageAdmin(admin.ModelAdmin):
     form = FlatpageForm
     fieldsets = (
         (None, {'fields': ('url', 'title', 'content')}),
-        (_('Advanced options'), {'classes': ('grp-collapse grp-closed',),
-                                 'fields': ('manual_positioning',
-                                            'pos_x',
-                                            'pos_y')}),
+        (_('Link Options'), {'classes': ('grp-collapse grp-open',),
+                             'fields': ('pos_x',
+                                        'pos_y',
+                                        'rotation')}),
     )
     list_display = ('url', 'title')
     search_fields = ('url', 'title')

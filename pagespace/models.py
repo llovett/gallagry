@@ -6,14 +6,14 @@ class FlatPage(models.Model):
     url = models.CharField(_('URL'), max_length=100, db_index=True)
     title = models.CharField(_('title'), max_length=200)
     content = models.TextField(_('content'), blank=True)
-    manual_positioning = models.BooleanField(default=False, verbose_name="Position this manually",
-                                             help_text=_("Enabling this will allow you to pick an exact position for the link to this page on the main page. Otherwise, the link will flow naturally."))
+
+    # Link options
     pos_x = models.IntegerField(default=0, verbose_name="X Position")
     pos_y = models.IntegerField(default=0, verbose_name="Y Position")
+    rotation = models.DecimalField(max_digits=8,decimal_places=5, default=0, verbose_name="Rotation")
 
     class Meta:
-        verbose_name = _('stylized flat page')
-        verbose_name_plural = _('stylized flat pages')
+        verbose_name = _('custom page')
         ordering = ('url',)
 
     def __unicode__(self):

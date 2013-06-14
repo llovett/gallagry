@@ -17,13 +17,11 @@
     {% load flatpages %}
     {% get_flatpages as pages %}
     {% for page in pages %}
-      {% if page.manual_positioning %}
-        #link_{{ page.id }} {
-          position:absolute;
-          top:{{ page.pos_y }}px;
-          left:{{ page.pos_x }}px;
-        }
-      {% endif %}
+      #link_{{ page.id }} {
+        position:absolute;
+        top:{{ page.pos_y }}px;
+        left:{{ page.pos_x }}px;
+      }
     {% endfor %}
   </style>
 
