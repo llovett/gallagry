@@ -2,18 +2,6 @@
 
 {% block styles %}
   <style type="text/css">
-{#    {% for image in images %} #}
-{#      #img_{{ image.id }} { #}
-{#        {% if image.manual_positioning %} #}
-{#          position:absolute; #}
-{#          top:{{ image.pos_y }}px; #}
-{#          left:{{ image.pos_x }}px; #}
-{#        {% endif %} #}
-{#        width:{{ image.width }}px; #}
-{#        height:{{ image.height }}px; #}
-{#      } #}
-{#    {% endfor %} #}
-
     {% load flatpages %}
     {% get_flatpages as pages %}
     {% for page in pages %}
@@ -59,33 +47,14 @@
 {% endblock %}
 
 {% block content %}
-  {% load thumbnail %}
-
-  <!-- images -->
-  {% load admin_urls %}
-{#  {% for image in images %} #}
-{#    <div id="img_{{ image.id }}"> #}
-{#      {% if request.user.is_superuser %} #}
-{#        <a href="{% url admin:imagespace_imageframe_change image.id %}" class="hovering_edit_link">edit</a> #}
-{#      {% endif %} #}
-{#      <a href="{% url image_detail image.id %}"> #}
-{#	{% thumbnail image.image image.geometry as im %} #}
-{#	  <img src="{{ im.url }}" alt="{{ image.title }}" class="gallery_image" /> #}
-{#	{% empty %} #}
-{#	  <p>No image to display.</p> #}
-{#	{% endthumbnail %} #}
-{#      </a> #}
-{#    </div> #}
-{#  {% endfor %} #}
-
   <!-- flatpages -->
   {% get_flatpages as pages %}
   {% for page in pages %}
-    <a href="{{ page.url }}" id="link_{{ page.id }}">{{ page.title }}</a>
+    <a href="{{ page.url }}" id="link_{{ page.id }}" class="main_page_link">{{ page.title }}</a>
   {% endfor %}
 
   <!-- gallery link, TODO: fill in gallery URL -->
-  <a href="{% url galleries_index %}" id="gallery_link">gallery</a>
+  <a href="{% url galleries_index %}" id="gallery_link" class="main_page_link">gallery</a>
 
 {% endblock %}
 

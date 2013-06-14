@@ -19,6 +19,7 @@ def galleries_show(request, gallery_id):
 def image_show(request, gallery_id, image_id):
     gallery = get_object_or_404(models.Gallery, id=gallery_id)
     image = get_object_or_404(models.Image, id=image_id)
+
     # Paypal form info
     paypal_dict = {
         "business": settings.PAYPAL_RECEIVER_EMAIL,

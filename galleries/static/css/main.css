@@ -135,6 +135,10 @@ h1, h2, h3 {
     z-index:100;
 }
 
+.main_page_link {
+    font-size:2em;
+}
+
 .edit_link {
     position:relative;
     top:10px;
