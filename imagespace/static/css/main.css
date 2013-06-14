@@ -141,9 +141,16 @@ h1, h2, h3 {
 }
 
 .gallery_image {
-    position:absolute;
-    top:0px;
-    left:0px;
+    /* position:absolute; */
+    /* top:0px; */
+    /* left:0px; */
+    display:inline;
+}
+
+.gallery_images {
+    list-style-type:none;
+    background-color:rgb(33,33,33);
+    padding:10px;
 }
 
 .home_link {

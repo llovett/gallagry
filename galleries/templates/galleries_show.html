@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ gallery.title }}{% endblock %}
+{% block styles %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery.css" />{% endblock %}
+{% block header %}<h2>{{ gallery.title }}</h2>{% endblock %}
+{% block content %}
+  {% if gallery.description|length > 0 %}
+    <p>{{ gallery.description }}</p>
+  {% endif %}
+
+  <!-- gallery thumbnails -->
+  {% load thumbnail %}
+  <ul class="gallery_images">
+    {% for img in all_images %}
+      <li class="gallery_image">
+	<a href="{% url image_show gallery.id img.id %}">
+          {% thumbnail img.image "x500" as im %}
+            <img src="{{ im.url }}" alt="{{ img.title }}" class="gallery_image" />
+          {% empty %}
+	</a>
+    	{{ image.title }}
+        {% endthumbnail %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

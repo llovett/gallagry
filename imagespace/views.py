@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from imagespace import models
-from imagespace.utils import random_string
 from pagespace.models import GalleryLinkPosition
 
 def main_page(request):
