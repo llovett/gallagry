@@ -21,13 +21,20 @@
         position:absolute;
         top:{{ page.pos_y }}px;
         left:{{ page.pos_x }}px;
+        -moz-transform:rotate({{ page.rotation }}deg);
+        -o-transform:rotate({{ page.rotation }}deg);
+        -webkit-transform:rotate({{ page.rotation }}deg);
+        -ms-transform:rotate({{ page.rotation }}deg);
       }
     {% endfor %}
     #gallery_link {
       position:absolute;
       left:{{ gallery_link_x }}px;
       top:{{ gallery_link_y }}px;
-      /* todo: gallery link rotation! */
+      -moz-transform:rotate({{ gallery_link_rot }}deg);
+      -o-transform:rotate({{ gallery_link_rot }}deg);
+      -webkit-transform:rotate({{ gallery_link_rot }}deg);
+      -ms-transform:rotate({{ gallery_link_rot }}deg);
     }
   </style>
 
