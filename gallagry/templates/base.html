@@ -20,13 +20,6 @@
         }
       </style>
     {% endif %}
-    {% if bgimage %}
-      <style type="text/css">
-	body {
-	  background-image:url("{{ MEDIA_URL }}{{ bgimage.background_image.url }}");
-	}
-      </style>
-    {% endif %}
     {% block styles %}{% endblock %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     {% block scripts %}{% endblock %}

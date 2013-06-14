@@ -26,6 +26,15 @@
       {% endif %}
     {% endfor %}
   </style>
+
+  {% if bgimage %}
+    <style type="text/css">
+      body {
+        background-image:url("{{ MEDIA_URL }}{{ bgimage.background_image.url }}");
+      }
+    </style>
+  {% endif %}
+
 {% endblock %}
 
 {% block scripts %}
