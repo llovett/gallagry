@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
 #    'imagespace',
+    'frontpage',
     'galleries',
     'pagespace',
     'grappelli',

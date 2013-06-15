@@ -25,20 +25,21 @@
       -ms-transform:rotate({{ gallery_link_rot }}deg);
     }
   </style>
-
   {% if bgimage %}
     <style type="text/css">
       body {
-        background-image:url("{{ MEDIA_URL }}{{ bgimage.background_image.url }}");
+/*        background-image:url("{{ MEDIA_URL }}{{ bgimage.background_image.url }}"); */
       }
     </style>
   {% endif %}
-
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.freetrans.css" type="text/css" media="screen" />
 {% endblock %}
 
 {% block scripts %}
   {% if request.user.is_superuser %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/edits.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/Matrix.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.freetrans.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/index_edits.js"></script>
   {% endif %}
 {% endblock %}
 
@@ -58,6 +59,11 @@
 
 {% block page_edit_link %}
   {% if request.user.is_superuser %}
-    <a href="/admin" class="edit_link">edit</a>
+    <div id="toolbar">
+      <ol>
+	<li><input type="button" id="edit_btn" name="edit_btn" value="edit" /></li>
+	<li><input type="button" id="done_btn" name="done_btn" value="done" /></li>
+      </ol>
+    </div>
   {% endif %}
 {% endblock %}
