@@ -51,7 +51,17 @@ $(document).ready(
 
 	$("#edit_btn").click(
 	    function() {
-		$(".main_page_link").each(function(){$(this).freetrans();});
+		// TODO: call freetrans() with current rotation, position
+		$(".main_page_link").each(
+		    function(){
+			$(this).freetrans({
+			    x:$(this).offset().left,
+			    y:$(this).offset().top,
+			    angle:$(this).data("angle"),
+			    'rot-origin':"0% 0%",
+			});
+		    }
+		);
 		matrices = new Array();
 	    }
 	);
@@ -63,8 +73,10 @@ $(document).ready(
 			var link_id = $(this).prop("id").split("_");
 			link_id = link_id[link_id.length-1];
 			link_id = (link_id === 'link' ?  "gallery" : link_id);
+			var angle = $(this).data('freetrans').angle;
+			$(this).data("angle", angle);
 			matrices.push({"link_id":link_id,
-				       "angle":$(this).data('freetrans').angle,
+				       "angle":angle,
 				       "top":$(this).data('freetrans').y,
 				       "left":$(this).data('freetrans').x});
 			$(this).freetrans('destroy');

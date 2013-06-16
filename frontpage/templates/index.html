@@ -44,7 +44,9 @@
 {% endblock %}
 
 {% block header %}
-<h1>Matthew Gallagher</h1>
+  <div id="index_header">
+    <h1>Matthew Gallagher</h1>
+  </div>
 {% endblock %}
 
 {% block content %}
@@ -54,7 +56,7 @@
     <a href="{{ page.url }}" id="link_{{ page.id }}" class="main_page_link">{{ page.title }}</a>
   {% endfor %}
 
-  <a href="{% url galleries_index %}" id="gallery_link" class="main_page_link">gallery</a>
+  <a href="{% url galleries_index %}" id="gallery_link" class="main_page_link">visual art</a>
 {% endblock %}
 
 {% block page_edit_link %}
@@ -67,3 +69,5 @@
     </div>
   {% endif %}
 {% endblock %}
+
+{% block navigation %}{% endblock %}
