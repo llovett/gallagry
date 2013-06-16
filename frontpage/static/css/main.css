@@ -118,6 +118,7 @@ h3 {
 /****** ELEMENT STYLES ******/
 a {
     text-decoration:none;
+    white-space:nowrap;
 }
 
 h1, h2, h3 {
