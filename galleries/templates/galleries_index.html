@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Galleries{% endblock %}
 {% block styles %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/galleries_index.css" />{% endblock %}
+{% block scripts %}<script type="text/javascript" src="{{ STATIC_URL }}js/galleries_index.js"></script>{% endblock %}
 {% block header %}<h2>Galleries</h2>{% endblock %}
 {% block content %}
   <ul>
@@ -9,9 +10,16 @@
     <li>
       <a href="{% url galleries_show gallery.id %}">
 	{{ gallery.title }}
-	{% thumbnail gallery.preview_image "500" as im %}
-	  <img src="{{ im.url }}" alt="{{ gallery.title }}" class="gallery_preview" />
-	{% endthumbnail %}
+	<div class="gallery_preview_wrap">
+    	  {% thumbnail gallery.preview_image "500" as im %}
+    	    <img src="{{ im.url }}" alt="{{ gallery.title }}" class="gallery_preview" />
+    	  {% endthumbnail %}
+	  {% if gallery.description|length > 0 %}
+  	    <div class="gallery_description" style="display:none;">
+	      {{ gallery.description }}
+	    </div>
+	  {% endif %}
+	</div>
       </a>
     </li>
   {% endfor %}

@@ -2,6 +2,20 @@
     display:block;
 }
 
+.gallery_preview_wrap {
+    position:relative;
+    width:500px;
+}
+
+.gallery_description {
+    position:absolute;
+    top:10px;
+    left:10px;
+    width:480px;
+    white-space:normal;
+    text-align:justify;
+}
+
 #navigation {
     margin-top:10px;
 }

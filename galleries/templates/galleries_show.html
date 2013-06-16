@@ -24,3 +24,13 @@
     {% endfor %}
   </ul>
 {% endblock %}
+
+{% block navigation %}
+  <div id="navigation">
+    <ul>
+      <li><a href="{% url main_page %}" class="home_link">home</a></li>
+      <li><a href="{% url galleries_index %}">galleries</a></li>
+    </ul>
+  </div>
+{% endblock %}
+
