@@ -1,0 +1,13 @@
+#wrapper {
+    margin:0;
+    padding:0;
+}
+
+#index_edit_link {
+    position:absolute;
+    right:0px;
+    top:0px;
+    background-color:white;
+    color:black;
+    padding:10px;
+}

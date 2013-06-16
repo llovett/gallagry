@@ -32,6 +32,7 @@
       }
     </style>
   {% endif %}
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.freetrans.css" type="text/css" media="screen" />
 {% endblock %}
 
@@ -61,12 +62,7 @@
 
 {% block page_edit_link %}
   {% if request.user.is_superuser %}
-    <div id="toolbar">
-      <ol>
-	<li><input type="button" id="edit_btn" name="edit_btn" value="edit" /></li>
-	<li><input type="button" id="done_btn" name="done_btn" value="done" /></li>
-      </ol>
-    </div>
+    <a href="#" id="index_edit_link" class="editit">edit</a>
   {% endif %}
 {% endblock %}
 

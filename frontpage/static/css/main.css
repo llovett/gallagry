@@ -83,6 +83,10 @@ body, html {
     font-family: 'Nobile', sans-serif;
 }
 
+#wrapper {
+    padding:20px;
+}
+
 h1 {
     font-size:4.5em;
 }
@@ -93,14 +97,6 @@ h2 {
 
 h3 {
     font-size:2em;
-}
-
-#panel {
-    position:absolute;
-    right:0px;
-    top:0px;
-    background-color:white;
-    color:black;
 }
 
 #index_header {
@@ -123,6 +119,10 @@ a {
 
 h1, h2, h3 {
     margin-bottom:0.28em;
+}
+
+#index_header h1 {
+    margin:0;
 }
 
 /* more likely to want this */

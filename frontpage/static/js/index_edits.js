@@ -49,44 +49,47 @@ $(document).ready(
 	// Editing link orientation and position
 	var matrices;
 
-	$("#edit_btn").click(
+	$("#index_edit_link").click(
 	    function() {
-		// TODO: call freetrans() with current rotation, position
-		$(".main_page_link").each(
-		    function(){
-			$(this).freetrans({
-			    x:$(this).offset().left,
-			    y:$(this).offset().top,
-			    angle:$(this).data("angle"),
-			    'rot-origin':"0% 0%",
-			});
-		    }
-		);
-		matrices = new Array();
-	    }
-	);
+		if ($(this).hasClass("editit")) {
+		    // TODO: call freetrans() with current rotation, position
+		    $(".main_page_link").each(
+			function(){
+			    $(this).freetrans({
+				x:$(this).offset().left,
+				y:$(this).offset().top,
+				angle:$(this).data("angle"),
+			    });
+			}
+		    );
+		    matrices = new Array();
 
-	$("#done_btn").click(
-	    function() {
-		$(".main_page_link").each(
-		    function() {
-			var link_id = $(this).prop("id").split("_");
-			link_id = link_id[link_id.length-1];
-			link_id = (link_id === 'link' ?  "gallery" : link_id);
-			var angle = $(this).data('freetrans').angle;
-			$(this).data("angle", angle);
-			matrices.push({"link_id":link_id,
-				       "angle":angle,
-				       "top":$(this).data('freetrans').y,
-				       "left":$(this).data('freetrans').x});
-			$(this).freetrans('destroy');
-		    }
-		);
+		    $(this).removeClass("editit");
+		    $(this).addClass("itsdone");
+		    $(this).text("done");
+		} else if ($(this).hasClass("itsdone")) {
+		    $(".main_page_link").each(
+			function() {
+			    var link_id = $(this).prop("id").split("_");
+			    link_id = link_id[link_id.length-1];
+			    link_id = (link_id === 'link' ?  "gallery" : link_id);
+			    var angle = $(this).data('freetrans').angle;
+			    $(this).data("angle", angle);
+			    matrices.push({"link_id":link_id,
+					   "angle":angle,
+					   "top":$(this).data('freetrans').y,
+					   "left":$(this).data('freetrans').x});
+			    $(this).freetrans('destroy');
+			}
+		    );
 
-		console.log(matrices);
-
-		// TODO: submit this for saving server-side
-		$.post("/edit/", JSON.stringify({"transforms":matrices}));
+		    // TODO: submit this for saving server-side
+		    $.post("/edit/", JSON.stringify({"transforms":matrices}));
+		    
+		    $(this).removeClass("itsdone");
+		    $(this).addClass("editit");
+		    $(this).text("edit");
+		}
 	    }
 	);
     }
