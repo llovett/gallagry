@@ -14,6 +14,11 @@ def main_page(request):
         gallery_link_rot = gallery_link.rotation
     except GalleryLinkPosition.DoesNotExist:
         pass
+
+    # For rendering some javascript
+    link_selectors = [("link_%d"%link.id,link.rotation) for link in FlatPage.objects.all()]
+    link_selectors.append(("gallery_link",gallery_link_rot))
+    
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def change_links(request):
