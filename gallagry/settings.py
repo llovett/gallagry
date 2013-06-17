@@ -163,7 +163,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.static',
-    'settings.template_processors.settings_processor',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
 )
 
 # A sample logging configuration. The only tangible logging

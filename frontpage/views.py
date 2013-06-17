@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from pagespace.models import GalleryLinkPosition, FlatPage
+from settings.models import BackgroundImage
 import json
 
 def main_page(request):
@@ -18,7 +19,13 @@ def main_page(request):
     # For rendering some javascript
     link_selectors = [("link_%d"%link.id,link.rotation) for link in FlatPage.objects.all()]
     link_selectors.append(("gallery_link",gallery_link_rot))
-    
+
+    # background image
+    try:
+        bgimage = BackgroundImage.objects.get(use_for_mainpage=True)
+    except BackgroundImage.DoesNotExist:
+        pass
+
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def change_links(request):

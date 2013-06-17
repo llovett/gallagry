@@ -22,6 +22,15 @@
     {% endif %}
     {% block styles %}{% endblock %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(
+	function() {
+	    var width = window.screen.width;
+	    var height = window.screen.height;
+	    $.get('/settings/resolution/'+width+'/'+height);
+	}
+    );
+    </script>
     {% block scripts %}{% endblock %}
   </head>
   

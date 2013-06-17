@@ -24,14 +24,14 @@
       -webkit-transform:rotate({{ gallery_link_rot }}deg);
       -ms-transform:rotate({{ gallery_link_rot }}deg);
     }
-  </style>
-  {% if bgimage %}
-    <style type="text/css">
+
+    {% if bgimage %}
       body {
-       background-image:url("{{ MEDIA_URL }}{{ bgimage.background_image.url }}");
+          background-image:url("{{ bgimage.background_image.url }}");
       }
-    </style>
-  {% endif %}
+    {% endif %}
+
+  </style>
   <link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.freetrans.css" type="text/css" media="screen" />
 {% endblock %}
@@ -148,7 +148,7 @@ $(document).ready(
 
 {% block header %}
   <div id="index_header">
-    <h1>Matthew Gallagher</h1>
+    <h1>MATTHEW GALLAGHER</h1>
   </div>
 {% endblock %}
 
@@ -156,10 +156,10 @@ $(document).ready(
   <!-- flatpages -->
   {% get_flatpages as pages %}
   {% for page in pages %}
-    <a href="{{ page.url }}" id="link_{{ page.id }}" class="main_page_link">{{ page.title }}</a>
+    <a href="{{ page.url }}" id="link_{{ page.id }}" class="main_page_link">{{ page.title|upper }}</a>
   {% endfor %}
 
-  <a href="{% url galleries_index %}" id="gallery_link" class="main_page_link">visual art</a>
+  <a href="{% url galleries_index %}" id="gallery_link" class="main_page_link">VISUAL ART</a>
 {% endblock %}
 
 {% block page_edit_link %}

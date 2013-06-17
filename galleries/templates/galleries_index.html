@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Galleries{% endblock %}
-{% block styles %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/galleries_index.css" />{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/galleries_index.css" />
+  {% if bgimage %}
+    <style type="text/css">
+      body {
+        background-image:url("{{ bgimage.background_image.url }}")
+      }
+    </style>
+  {% endif %}
+{% endblock %}
 {% block scripts %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/galleries_index.js"></script>
   <script type="text/javascript">
@@ -12,7 +21,7 @@
     );
   </script>
 {% endblock %}
-{% block header %}<h2>Galleries</h2>{% endblock %}
+{% block header %}<h2>GALLERIES</h2>{% endblock %}
 {% block content %}
   <ul class="gallery_list">
   {% load thumbnail %}

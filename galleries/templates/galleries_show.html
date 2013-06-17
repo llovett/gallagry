@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 {% block title %}{{ gallery.title }}{% endblock %}
-{% block styles %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery_show.css" />{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery_show.css" />
+  {% if gallery.background_image %}
+  <style type="text/css">
+    body {
+      background-image:url("{{ gallery.background_image.background_image.url }}");
+    }
+  </style>
+  {% endif %}
+{% endblock %}
 {% block scripts %}<script type="text/javascript" src="{{ STATIC_URL }}js/image_show.js"></script>{% endblock %}
-{% block header %}<h2>{{ gallery.title }}</h2>{% endblock %}
+{% block header %}<h2>{{ gallery.title|upper }}</h2>{% endblock %}
 {% block content %}
   {% if gallery.description|length > 0 %}
     <p>{{ gallery.description }}</p>

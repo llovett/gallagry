@@ -6,15 +6,23 @@ from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from galleries.utils import random_string
 from galleries import models
+from settings.models import BackgroundImage
 
 def galleries_index(request):
     all_galleries = models.Gallery.objects.all()
-    return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request))
+
+    # Background image
+    try:
+        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
+    except BackgroundImage.DoesNotExist:
+        pass
+
+    return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
 
 def galleries_show(request, gallery_id):
     gallery = get_object_or_404(models.Gallery,id=gallery_id)
     all_images = get_list_or_404(models.Image, gallery=gallery)
-    return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request, locals()))
 
 def image_show(request, gallery_id, image_id):
     gallery = get_object_or_404(models.Gallery, id=gallery_id)
@@ -26,9 +34,9 @@ def image_show(request, gallery_id, image_id):
         "amount": image.price,
         "item_name": image.title,
         "invoice": random_string(),
-        "notify_url": reverse("purchase_notify",args=(image_id,)),
-        "return_url": reverse("purchase_return",args=(image_id,)),
-        "cancel_return": reverse("purchase_cancel",args=(image_id,))
+        "notify_url": reverse("purchase_notify",args=(gallery.id,image_id,)),
+        "return_url": reverse("purchase_return",args=(gallery.id,image_id,)),
+        "cancel_return": reverse("purchase_cancel",args=(gallery.id,image_id,))
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
 

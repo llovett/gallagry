@@ -1,4 +1,5 @@
 from django.db import models
+from sorl.thumbnail import ImageField
 from colorful.fields import RGBColorField
 from django.utils.translation import ugettext_lazy as _
 import datetime
@@ -23,16 +24,25 @@ class ColorScheme(models.Model):
         super(ColorScheme,self).save()
 
 class BackgroundImage(models.Model):
-    background_image = models.ImageField(upload_to='images')
-    is_default = models.BooleanField(default=True, verbose_name="Make this your default background")
+    background_image = models.ImageField(upload_to='images',width_field='full_width',height_field='full_height')
+    use_for_mainpage = models.BooleanField(default=True, verbose_name="Use this on the main page")
+    use_for_galleries = models.BooleanField(default=True, verbose_name="Use this on galleries page")
+    full_width = models.IntegerField(default=0,editable=False)
+    full_height = models.IntegerField(default=0,editable=False)
+    title = models.CharField(max_length=500,blank=True,null=True)
 
     def __unicode__(self):
-        return self.background_image.name
+        return self.title if self.title else self.background_image.name
 
     def save(self):
-        if self.is_default:
+        if self.use_for_mainpage:
             other_imgs = BackgroundImage.objects.exclude(id=self.id)
             for img in other_imgs:
-                img.is_default = False
+                img.use_for_mainpage = False
+                img.save()
+        if self.use_for_galleries:
+            other_imgs = BackgroundImage.objects.exclude(id=self.id)
+            for img in other_imgs:
+                img.use_for_galleries = False
                 img.save()
         super(BackgroundImage,self).save()

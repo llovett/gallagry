@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% block styles %}
+  {% if flatpage.background_image %}
+    <style type="text/css">
+      body {
+        background-image:url("{{ flatpage.background_image.background_image.url }}");
+      }
+    </style>
+  {% endif %}
+{% endblock %}
 {% block title %}Matthew Gallagher - {{ flatpage.title }}{% endblock %}
 {% block header %}
   <h2>{{ flatpage.title }}</h2>

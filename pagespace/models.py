@@ -6,6 +6,7 @@ class FlatPage(models.Model):
     url = models.CharField(_('URL'), max_length=100, db_index=True)
     title = models.CharField(_('title'), max_length=200)
     content = models.TextField(_('content'), blank=True)
+    background_image = models.ForeignKey('settings.BackgroundImage', verbose_name="Background image", blank=True, null=True)
 
     # Link options
     pos_x = models.IntegerField(default=0, verbose_name="X Position")
