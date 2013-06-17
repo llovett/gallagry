@@ -6,7 +6,7 @@ from pagespace.forms import FlatpageForm
 class FlatPageAdmin(admin.ModelAdmin):
     form = FlatpageForm
     fieldsets = (
-        (None, {'fields': ('url', 'title', 'content', 'background_image')}),
+        (None, {'fields': ('url', 'title', 'content', 'background_image', 'colorscheme',)}),
         (_('Link Options'), {'classes': ('grp-collapse grp-open',),
                              'fields': ('pos_x',
                                         'pos_y',

@@ -7,6 +7,26 @@
       }
     </style>
   {% endif %}
+  {% if flatpage.colorscheme %}
+    <style type="text/css">
+      {% with flatpage.colorscheme as colorscheme %}
+	body, html, #content {
+    	  background-color:{{ colorscheme.background_color }};
+    	  color:{{ colorscheme.foreground_color }};
+	}
+        #content {
+          border:{{ colorscheme.foreground_color }} 2px solid;
+        }
+	a {
+    	  color:{{ colorscheme.link_color }};
+	}
+	a:hover {
+      	  color:{{ colorscheme.rollover_color }};
+	}
+      {% endwith %}
+      {% endif %}
+    </style>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/flatpage.css" type="text/css" media="screen" />
 {% endblock %}
 {% block title %}Matthew Gallagher - {{ flatpage.title }}{% endblock %}
 {% block header %}

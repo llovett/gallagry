@@ -7,6 +7,7 @@ class FlatPage(models.Model):
     title = models.CharField(_('title'), max_length=200)
     content = models.TextField(_('content'), blank=True)
     background_image = models.ForeignKey('settings.BackgroundImage', verbose_name="Background image", blank=True, null=True)
+    colorscheme = models.ForeignKey('settings.ColorScheme', verbose_name="Color scheme", blank=True, null=True)
 
     # Link options
     pos_x = models.IntegerField(default=0, verbose_name="X Position")

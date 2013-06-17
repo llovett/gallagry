@@ -17,11 +17,18 @@ def galleries_index(request):
     except BackgroundImage.DoesNotExist:
         pass
 
+    # color scheme
+    try:
+        colorscheme = ColorScheme.objects.get(use_for_galleries=True)
+    except ColorScheme.DoesNotExist:
+        pass
+
     return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
 
 def galleries_show(request, gallery_id):
     gallery = get_object_or_404(models.Gallery,id=gallery_id)
     all_images = get_list_or_404(models.Image, gallery=gallery)
+    colorscheme = gallery.colorscheme
     return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request, locals()))
 
 def image_show(request, gallery_id, image_id):
@@ -40,6 +47,12 @@ def image_show(request, gallery_id, image_id):
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
 
+    # Use gallery colorscheme
+    try:
+        colorscheme = ColorScheme.objects.get(use_for_galleries=True)
+    except ColorScheme.DoesNotExist:
+        pass
+        
     return render_to_response("image_show.html", locals(), context_instance=RequestContext(request))
 
 def purchase_notify(request, gallery_id, image_id):

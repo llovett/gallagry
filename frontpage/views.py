@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from pagespace.models import GalleryLinkPosition, FlatPage
-from settings.models import BackgroundImage
+from settings.models import BackgroundImage, ColorScheme
 import json
 
 def main_page(request):
@@ -24,6 +24,12 @@ def main_page(request):
     try:
         bgimage = BackgroundImage.objects.get(use_for_mainpage=True)
     except BackgroundImage.DoesNotExist:
+        pass
+
+    # color scheme
+    try:
+        colorscheme = ColorScheme.objects.get(use_for_mainpage=True)
+    except ColorScheme.DoesNotExist:
         pass
 
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))

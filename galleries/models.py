@@ -20,6 +20,7 @@ class Gallery(models.Model):
     preview_image = ImageField(upload_to='images', verbose_name="Thumbnail", blank=True, null=True)
     description = models.TextField(blank=True,null=True, verbose_name="Description")
     background_image = models.ForeignKey('settings.BackgroundImage', verbose_name="Background image", blank=True, null=True)
+    colorscheme = models.ForeignKey('settings.ColorScheme', verbose_name="Color scheme", blank=True, null=True)
 
     def __unicode__(self):
         return self.title
