@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from galleries.utils import random_string
 from galleries import models
-from settings.models import BackgroundImage
+from settings.models import BackgroundImage, ColorScheme
 
 def galleries_index(request):
     all_galleries = models.Gallery.objects.all()
