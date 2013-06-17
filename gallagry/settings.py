@@ -154,8 +154,10 @@ INSTALLED_APPS = (
 # Some settings for various installed apps
 GRAPPELLI_ADMIN_TITLE = "Gallagry Admin"
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins':"paste,table,searchreplace",
-    'theme':"advanced"
+    'plugins':"paste,table,searchreplace,jbimages",
+    'theme':"advanced",
+    'relative_urls':False,
+    'theme_advanced_buttons4' : "jbimages"
 }
 
 TEMPLATE_CONTEXT_PROCESSORS = (

@@ -1,8 +1,8 @@
 $(document).ready(
     function() {
-	$(".gallery_preview").hover(
+	$(".gallery_link").hover(
 	    function() {
-		$(this).next(".gallery_description").toggle();
+		$(this).find(".gallery_description").toggle();
 	    }
 	);
     }

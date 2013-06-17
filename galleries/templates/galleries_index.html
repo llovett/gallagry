@@ -4,22 +4,26 @@
 {% block scripts %}<script type="text/javascript" src="{{ STATIC_URL }}js/galleries_index.js"></script>{% endblock %}
 {% block header %}<h2>Galleries</h2>{% endblock %}
 {% block content %}
-  <ul>
+  <ul class="gallery_list">
   {% load thumbnail %}
   {% for gallery in all_galleries %}
     <li>
-      <a href="{% url galleries_show gallery.id %}">
-	{{ gallery.title }}
-	<div class="gallery_preview_wrap">
-    	  {% thumbnail gallery.preview_image "500" as im %}
-    	    <img src="{{ im.url }}" alt="{{ gallery.title }}" class="gallery_preview" />
-    	  {% endthumbnail %}
-	  {% if gallery.description|length > 0 %}
-  	    <div class="gallery_description" style="display:none;">
-	      {{ gallery.description }}
+      <a href="{% url galleries_show gallery.id %}" class="gallery_link">
+	<ul class="gallery_item_list">
+	  <li class="gallery_title">{{ gallery.title }}</li>
+	  <li>
+	    <div class="gallery_image_wrap">
+      	      {% thumbnail gallery.preview_image "500x500" crop="center" as im %}
+	        <img src="{{ im.url }}" alt="{{ gallery.title }}" class="gallery_preview" />
+	      {% endthumbnail %}
+	      {% if gallery.description|length > 0 %}
+  	        <div class="gallery_description" style="display:none;">
+  	          {{ gallery.description }}
+  	        </div>
+	      {% endif %}
 	    </div>
-	  {% endif %}
-	</div>
+	  </li>
+	</ul>
       </a>
     </li>
   {% endfor %}

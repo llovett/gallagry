@@ -1,17 +1,27 @@
-.gallery_preview {
-    display:block;
+.gallery_list li {
+    display:inline-block;
 }
 
-.gallery_preview_wrap {
+.gallery_item_list li {
+    display:block;
+    padding:5px 0;
+}
+
+li.gallery_title {
+    text-align:center;
+}
+
+.gallery_image_wrap {
     position:relative;
-    width:500px;
 }
 
 .gallery_description {
     position:absolute;
+    background-color:rgba(33,33,33,0.5);
     top:10px;
     left:10px;
-    width:480px;
+    width:460px;
+    padding:10px;
     white-space:normal;
     text-align:justify;
 }
