@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Galleries{% endblock %}
 {% block styles %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/galleries_index.css" />{% endblock %}
-{% block scripts %}<script type="text/javascript" src="{{ STATIC_URL }}js/galleries_index.js"></script>{% endblock %}
+{% block scripts %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/galleries_index.js"></script>
+  <script type="text/javascript">
+    $(document).ready(
+	function() {
+	    var galleries = {{ all_galleries|length }};
+	    $(".gallery_list").css("width", 530*galleries);
+	}
+    );
+  </script>
+{% endblock %}
 {% block header %}<h2>Galleries</h2>{% endblock %}
 {% block content %}
   <ul class="gallery_list">

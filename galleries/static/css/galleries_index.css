@@ -1,5 +1,11 @@
+.gallery_list {
+    padding:0px;
+}
+
 .gallery_list li {
     display:inline-block;
+    margin:5px;
+    padding:0;
 }
 
 .gallery_item_list li {
