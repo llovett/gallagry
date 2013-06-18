@@ -131,7 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-#    'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
@@ -144,9 +144,17 @@ INSTALLED_APPS = (
     'paypal.standard.ipn',
     'tinymce',
     'mce_filebrowser',
-    # 'south',
     'colorful',
     'settings',
+
+    # Enable this when deploying for real:
+    # 'south',
+
+    # Stuff for blog:
+    'tagging',
+    'mptt',
+    'zinnia',
+    
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -166,6 +174,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
+    'django.core.context_processors.i18n',
 )
 
 # A sample logging configuration. The only tangible logging

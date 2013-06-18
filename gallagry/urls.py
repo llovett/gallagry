@@ -18,6 +18,12 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^settings/', include('settings.urls')),
+
+    # TinyMCE stuff:
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^mce_filebrowser/', include('mce_filebrowser.urls')),
+
+    # Blog stuff:
+    url(r'^weblog/', include('zinnia.urls')),
+    url(r'^comments/', include('django.contrib.comments.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

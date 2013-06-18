@@ -1,8 +1,15 @@
+BeautifulSoup==3.2.1
 Django==1.4.3
 PIL==1.1.7
 South==0.8.1
+django-blog-zinnia==0.12.3
 django-grappelli==2.4.5
+django-mptt==0.5.5
 django-paypal==0.1.2
+django-tagging==0.3.1
 django-tinymce==1.5.1
+django-xmlrpc==0.1.5
+pyparsing==1.5.7
+pytz==2013b
 sorl-thumbnail==11.12
 wsgiref==0.1.2
