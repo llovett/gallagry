@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'paypal.standard.ipn',
     'tinymce',
+    'mce_filebrowser',
     # 'south',
     'colorful',
     'settings',
@@ -156,7 +157,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'plugins':"paste,table,searchreplace,jbimages",
     'theme':"advanced",
     'relative_urls':False,
-    'theme_advanced_buttons4' : "jbimages"
+    'file_browser_callback': 'mce_filebrowser'
 }
 
 TEMPLATE_CONTEXT_PROCESSORS = (

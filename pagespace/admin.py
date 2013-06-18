@@ -2,8 +2,9 @@ from django.contrib import admin
 from pagespace.models import FlatPage, GalleryLinkPosition
 from django.utils.translation import ugettext_lazy as _
 from pagespace.forms import FlatpageForm
+from mce_filebrowser.admin import MCEFilebrowserAdmin
 
-class FlatPageAdmin(admin.ModelAdmin):
+class FlatPageAdmin(MCEFilebrowserAdmin):
     form = FlatpageForm
     fieldsets = (
         (None, {'fields': ('url', 'title', 'content', 'background_image', 'colorscheme',)}),
