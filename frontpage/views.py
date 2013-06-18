@@ -1,13 +1,15 @@
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from pagespace.models import GalleryLinkPosition, FlatPage
+from pagespace.models import FlatPage
+from frontpage.models import GalleryLinkPosition, BlogLinkPosition
 from settings.models import BackgroundImage, ColorScheme
 import json
 
 def main_page(request):
     gallery_link_x = gallery_link_y = 500
-    gallery_link_rot = 0
+    blog_link_x = blog_link_y = 600
+    gallery_link_rot = blog_link_rot = 0
     try:
         gallery_link = GalleryLinkPosition.objects.get(is_default=True)
         gallery_link_x = gallery_link.pos_x
@@ -15,10 +17,18 @@ def main_page(request):
         gallery_link_rot = gallery_link.rotation
     except GalleryLinkPosition.DoesNotExist:
         pass
+    try:
+        blog_link = BlogLinkPosition.objects.get(is_default=True)
+        blog_link_x = blog_link.pos_x
+        blog_link_y = blog_link.pos_y
+        blog_link_rot = blog_link.rotation
+    except BlogLinkPosition.DoesNotExist:
+        pass
 
     # For rendering some javascript
     link_selectors = [("link_%d"%link.id,link.rotation) for link in FlatPage.objects.all()]
     link_selectors.append(("gallery_link",gallery_link_rot))
+    link_selectors.append(("blog_link",blog_link_rot))
 
     # background image
     try:
@@ -46,6 +56,11 @@ def change_links(request):
                 transform_me = GalleryLinkPosition.objects.get(is_default=True)
             except GalleryLinkPosition.DoesNotExist:
                 transform_me = GalleryLinkPosition()
+        elif transform.get("link_id") == "blog":
+            try:
+                transform_me = BlogLinkPosition.objects.get(is_default=True)
+            except BlogLinkPosition.DoesNotExist:
+                transform_me = BlogLinkPosition()
         else:
             transform_me = get_object_or_404(FlatPage, id=int(transform.get("link_id")))
                 

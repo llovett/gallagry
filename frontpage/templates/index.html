@@ -16,14 +16,23 @@
       }
     {% endfor %}
     #gallery_link {
-      position:absolute;
-      left:{{ gallery_link_x }}px;
-      top:{{ gallery_link_y }}px;
-      -moz-transform:rotate({{ gallery_link_rot }}deg);
-      -o-transform:rotate({{ gallery_link_rot }}deg);
-      -webkit-transform:rotate({{ gallery_link_rot }}deg);
-      -ms-transform:rotate({{ gallery_link_rot }}deg);
+        position:absolute;
+        left:{{ gallery_link_x }}px;
+        top:{{ gallery_link_y }}px;
+        -moz-transform:rotate({{ gallery_link_rot }}deg);
+        -o-transform:rotate({{ gallery_link_rot }}deg);
+        -webkit-transform:rotate({{ gallery_link_rot }}deg);
+        -ms-transform:rotate({{ gallery_link_rot }}deg);
     }
+    #blog_link {
+	position:absolute;
+	left:{{ blog_link_x }}px;
+	top:{{ blog_link_y }}px;
+	-moz-transform:rotate({{ blog_link_rot }}deg);
+	-o-transform:rotate({{ blog_link_rot }}deg);
+	-webkit-transform:rotate({{ blog_link_rot }}deg);
+	-ms-transform:rotate({{ blog_link_rot }}deg);
+    }	
 
     {% if bgimage %}
       body {
@@ -118,9 +127,12 @@ $(document).ready(
 		} else if ($(this).hasClass("itsdone")) {
 		    $(".main_page_link").each(
 			function() {
-			    var link_id = $(this).prop("id").split("_");
-			    link_id = link_id[link_id.length-1];
-			    link_id = (link_id === 'link' ?  "gallery" : link_id);
+			    var id_parts = $(this).prop("id").split("_");
+			    var last_part = id_parts[id_parts.length-1];
+			    var link_id = last_part;
+			    if (last_part === 'link') {
+				link_id = id_parts[0];
+			    }
 			    var angle = $(this).data('freetrans').angle;
 			    $(this).data("angle", angle);
 			    matrices.push({"link_id":link_id,
@@ -131,7 +143,6 @@ $(document).ready(
 			}
 		    );
 
-		    // TODO: submit this for saving server-side
 		    $.post("/edit/", JSON.stringify({"transforms":matrices}));
 		    
 		    $(this).removeClass("itsdone");
@@ -160,6 +171,7 @@ $(document).ready(
   {% endfor %}
 
   <a href="{% url galleries_index %}" id="gallery_link" class="main_page_link">VISUAL ART</a>
+  <a href="/weblog/" id="blog_link" class="main_page_link">BLOG</a>
 {% endblock %}
 
 {% block page_edit_link %}
