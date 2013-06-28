@@ -153,6 +153,7 @@ INSTALLED_APPS = (
 
     # Stuff for blog:
     'tagging',
+    'django.contrib.humanize',
     'barebones',
     
     # Uncomment the next line to enable admin documentation:
@@ -162,7 +163,7 @@ INSTALLED_APPS = (
 # Some settings for various installed apps
 GRAPPELLI_ADMIN_TITLE = "Gallagry Admin"
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins':"paste,table,searchreplace,jbimages",
+    'plugins':"paste,table,searchreplace",
     'theme':"advanced",
     'relative_urls':False,
     'file_browser_callback': 'mce_filebrowser'
