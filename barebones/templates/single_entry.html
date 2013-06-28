@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ entry.title }}{% endblock %}
+{% block meta %}
+  <meta property="og:title" content="{{ entry.title }}" />
+  <meta property="og:description" content="{{ entry.content|striptags|truncatewords:50 }}" />
+{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css" media="screen" />
+{% endblock %}
+
+{% block content %}
+{% load tagging_tags %}
+{% load humanize %}
+<h3>{{ entry.title }}</h3>
+<span class="date">Last updated {{ entry.last_modified|naturaltime }}.</span>
+<div class="entry_content">
+  {{ entry.content|safe }}
+</div>
+<div class="tags">
+  <ul class="list-tags">
+    {% tags_for_object entry as tags %}
+    {% for tag in tags %}
+      <li class="item-tag"><a href="{% url get_tagged tag.name|slugify %}">{{ tag.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="social">
+  <strong>Share this Post</strong>
+  <div class="social-buttons">
+    <span class="social-button">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Freference%2Fplugins%2Flike&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+    </span>
+    <span class="social-button">
+      <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{% url get_post entry.slug %}"></div>
+    </span>      
+    <span class="social-button">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="{% url get_post entry.slug %}" data-size="small" data-count="none" data-text="{{ entry.title }}, from Matthew Gallagher">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </span>
+  </div>
+</div>
+<a href="{% url news_main %}">news</a>
+
+<!-- for sharing on G+ -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+{% endblock %}

@@ -24,6 +24,5 @@ urlpatterns = patterns(
     url(r'^mce_filebrowser/', include('mce_filebrowser.urls')),
 
     # Blog stuff:
-    url(r'^weblog/', include('zinnia.urls')),
-    url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^news/', include('barebones.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
