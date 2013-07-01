@@ -31,15 +31,10 @@
   </div>
 {% endblock %}
 
-{% block page_edit_link %}
-  {% if request.user.is_superuser %}
-    <a href="{% url admin:galleries_image_change image.id %}" class="edit_link">edit</a>
-  {% endif %}
-{% endblock %}
-
 {% block navigation %}
   <ul>
-    <li><a href="{% url galleries_show gallery.id %}">{{ gallery.title }}</a></li>
-    <li><a href="{% url main_page %}" class="home_link">Home</a></li>
+    <li>≪ <a href="{% url galleries_show gallery.id %}">{{ gallery.title }}</a></li>
+    <li>≪ <a href="{% url galleries_index %}">Galleries</a></li>
+    <li>≪ <a href="{% url main_page %}" class="home_link">Home</a></li>
   </ul>
 {% endblock %}

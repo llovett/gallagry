@@ -25,21 +25,19 @@
 	<a href="{% url image_show gallery.id img.id %}">
           {% thumbnail img.image "x500" as im %}
             <img src="{{ im.url }}" alt="{{ img.title }}" class="gallery_image" />
-          {% empty %}
+	  {% empty %}
+    	    {{ img.title }}
+          {% endthumbnail %}
 	</a>
-    	{{ image.title }}
-        {% endthumbnail %}
       </li>
     {% endfor %}
   </ul>
 {% endblock %}
 
 {% block navigation %}
-  <div id="navigation">
-    <ul>
-      <li><a href="{% url main_page %}" class="home_link">home</a></li>
-      <li><a href="{% url galleries_index %}">galleries</a></li>
-    </ul>
-  </div>
+  <ul>
+    <li>≪ <a href="{% url galleries_index %}">galleries</a></li>
+    <li>≪ <a href="{% url main_page %}" class="home_link">home</a></li>
+  </ul>
 {% endblock %}
 
