@@ -22,5 +22,8 @@ class Gallery(models.Model):
     background_image = models.ForeignKey('settings.BackgroundImage', verbose_name="Background image", blank=True, null=True)
     colorscheme = models.ForeignKey('settings.ColorScheme', verbose_name="Color scheme", blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "Galleries"
+
     def __unicode__(self):
         return self.title

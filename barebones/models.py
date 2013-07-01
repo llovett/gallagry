@@ -10,5 +10,8 @@ class Entry(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name_plural = "Entries"
+
     def __unicode__(self):
         return self.title
