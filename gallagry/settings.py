@@ -150,7 +150,7 @@ INSTALLED_APPS = (
     'settings',
 
     # Enable this when deploying for real:
-    # 'south',
+    'south',
 
     # Stuff for blog:
     'tagging',

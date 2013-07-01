@@ -153,15 +153,11 @@ li {
 
 .main_page_link {
     font-size:2em;
+    font-weight:bold;
 }
 
 .edit_link {
     position:relative;
     top:10px;
-}
-
-.home_link {
-    margin-top:10px;
-    /* style for home link goes here! */
 }
 /****** END CLASS STYLES ******/

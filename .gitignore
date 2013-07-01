@@ -5,6 +5,7 @@ upload
 images
 cache
 gallagry/static
+migrations
 
 # Other things
 .swp_emacs
