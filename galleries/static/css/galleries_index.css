@@ -35,3 +35,7 @@ li.gallery_title {
 #navigation {
     margin-top:10px;
 }
+
+.gallery_preview {
+    width:500px;
+}

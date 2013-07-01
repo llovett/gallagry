@@ -34,6 +34,8 @@
 	    <div class="gallery_image_wrap">
       	      {% thumbnail gallery.preview_image "500x500" crop="center" as im %}
 	        <img src="{{ im.url }}" alt="{{ gallery.title }}" class="gallery_preview" />
+	      {% empty %}
+		<hr class="gallery_preview" />
 	      {% endthumbnail %}
 	      {% if gallery.description|length > 0 %}
   	        <div class="gallery_description" style="display:none;">

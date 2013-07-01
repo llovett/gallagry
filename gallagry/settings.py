@@ -12,6 +12,7 @@ PAYPAL_RECEIVER_EMAIL = "wolfinsilver@gmail.com"
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+THUMBNAIL_DEBUG = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
