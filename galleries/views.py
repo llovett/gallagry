@@ -27,7 +27,7 @@ def galleries_index(request):
 
 def galleries_show(request, gallery_id):
     gallery = get_object_or_404(models.Gallery,id=gallery_id)
-    all_images = get_list_or_404(models.Image, gallery=gallery)
+    all_images = gallery.image_set.all()
     colorscheme = gallery.colorscheme
     return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request, locals()))
 
