@@ -11,7 +11,7 @@
 {% load tagging_tags %}
 {% load humanize %}
 <h3>{{ entry.title }}</h3>
-<span class="date">Last updated {{ entry.last_modified|naturaltime }}.</span>
+<div class="date">Last updated {{ entry.last_modified|naturaltime }}.</div>
 <div class="entry_content">
   {{ entry.content|safe }}
 </div>

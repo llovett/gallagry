@@ -6,12 +6,16 @@ ul.list-posts, ul.list-tags {
     list-style-type:none;
 }
 
-li.item-post {
+li.item-post, div.entry_content {
     display:block;
     margin-bottom:25px;
 }
 
-li.item-post p {
+li.item-post {
+    border-bottom:solid 1px #aaaaaa;
+}	
+
+li.item-post p, div.entry_content p {
     margin:5px 0;
 }
 
@@ -32,4 +36,11 @@ div.date {
 
 div.tags {
     margin:10px 0;
+}
+
+div.social {
+    border-top:solid 1px #aaaaaa;
+    border-bottom:solid 1px #aaaaaa;
+    width:300px;
+    padding:10px 0;
 }
