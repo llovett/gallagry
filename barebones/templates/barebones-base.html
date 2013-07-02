@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/barebones.css" type="text/css" media="screen" />
+{% endblock %}
+
+{% block meta %}
+  <meta property="og:site_name" content="The Gallagry: Art by Matthew Gallagher" />
+  <meta property="og:image" content="{{ STATIC_URL }}img/ogimage.png" />
+{% endblock %}
+
+{% block navigation %}
+  <ul>
+    <li>≪ <a href="{% url main_page %}" class="home_link">home</a></li>
+  </ul>
+{% endblock %}

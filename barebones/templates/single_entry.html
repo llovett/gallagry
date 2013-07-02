@@ -1,12 +1,10 @@
-{% extends "base.html" %}
+{% extends "barebones-base.html" %}
 
 {% block title %}{{ entry.title }}{% endblock %}
 {% block meta %}
+  {{ block.super }}
   <meta property="og:title" content="{{ entry.title }}" />
   <meta property="og:description" content="{{ entry.content|striptags|truncatewords:50 }}" />
-{% endblock %}
-{% block styles %}
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css" media="screen" />
 {% endblock %}
 
 {% block content %}
@@ -40,7 +38,6 @@
     </span>
   </div>
 </div>
-<a href="{% url news_main %}">news</a>
 
 <!-- for sharing on G+ -->
 <script type="text/javascript">
@@ -51,4 +48,11 @@
   })();
 </script>
 
+{% endblock %}
+
+{% block navigation %}
+  <ul>
+    <li>≪ <a href="{% url news_main %}">news</a></li>
+    <li>≪ <a href="{% url main_page %}" class="home_link">home</a></li>
+  </ul>
 {% endblock %}
