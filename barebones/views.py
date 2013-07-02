@@ -36,7 +36,7 @@ def get_tagged(request, colorscheme, bgimage, slugified_tag):
             break
     tag = Tag.objects.get(name=tag)
     entries = TaggedItem.objects.get_by_model(Entry, tag)
-    return render_to_response("entry_list.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("barebones-tag.html", locals(), context_instance=RequestContext(request))
 
 @get_prefs
 def get_post(request, colorscheme, bgimage, slugified_title):

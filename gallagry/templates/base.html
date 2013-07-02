@@ -47,10 +47,12 @@
 
       <div id="navigation">
       {% block navigation %}
-          {% if request.path != main_page_url %}
-            ≪ <a href="{{ main_page_url }}" class="home_link">Home</a>
-          {% endif %}
+	{% load breadcrumb_tags %}
+        {% if request.path != main_page_url %}
+  	  {% add_crumb "home" "main_page" %}
+	{% endif %}
       {% endblock %}
+      {% render_breadcrumbs %}
       </div>
 
       {% block page_edit_link %}{% endblock %}

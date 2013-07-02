@@ -50,3 +50,8 @@
   {% endfor %}
   </ul>
 {% endblock %}
+{% block navigation %}
+  {{ block.super }}
+  {% load breadcrumb_tags %}
+  {% add_crumb "galleries" "galleries_index" %}
+{% endblock %}

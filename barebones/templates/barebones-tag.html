@@ -1,0 +1,45 @@
+{% extends "entry_list.html" %}
+
+{% block title %}
+  {% if tag %}{{ tag.name }}{% else %}News{% endif %}
+{% endblock %}
+
+{% block content %}
+{% load tagging_tags %}
+{% load humanize %}
+<ul class="list-posts">
+{% for entry in entries %}
+<li class="item-post">
+  <a href="{% url get_post entry.slug %}"><h3>{{ entry.title }}</h3></a>
+  <div class="date">Last updated {{ entry.last_modified|naturaltime }}.</div>
+  <div class="entry_content">
+    {{ entry.content|safe|truncatewords_html:100 }}
+  </div>
+  <div class="tags">
+    <ul class="list-tags">
+      {% tags_for_object entry as tags %}
+      {% for tag in tags %}
+      <li class="item-tag"><a href="{% url get_tagged tag.name|slugify %}">{{ tag.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</li>
+{% endfor %}
+</ul>
+
+<!-- for sharing on G+ -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+{% endblock %}
+
+{% block navigation %}
+  {{ block.super }}
+  {% load breadcrumb_tags %}
+  {% add_crumb tag.name "get_tagged" tag.name|slugify %}
+{% endblock %}

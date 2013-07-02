@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block navigation %}
-  <ul>
-    <li>≪ <a href="{% url main_page %}" class="home_link">home</a></li>
-  </ul>
+  {{ block.super }}
+  {% load breadcrumb_tags %}
+  {% add_crumb "news" "news_main" %}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "galleries_index.html" %}
 {% block title %}{{ gallery.title }}{% endblock %}
 {% block styles %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/gallery_show.css" />
@@ -35,9 +35,7 @@
 {% endblock %}
 
 {% block navigation %}
-  <ul>
-    <li>≪ <a href="{% url galleries_index %}">galleries</a></li>
-    <li>≪ <a href="{% url main_page %}" class="home_link">home</a></li>
-  </ul>
+  {{ block.super }}
+  {% load breadcrumb_tags %}
+  {% add_crumb gallery.title "galleries_show" gallery.id %}
 {% endblock %}
-

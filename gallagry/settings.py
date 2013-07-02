@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'mce_filebrowser',
     'colorful',
     'settings',
+    'crumbs',
 
     # Enable this when deploying for real:
     'south',
