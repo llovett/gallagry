@@ -23,7 +23,7 @@ def get_prefs(view):
 @get_prefs
 def main_page(request, colorscheme, bgimage):
     entries = Entry.objects.all()
-    return render_to_response("entry_list.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("barebones-all.html", locals(), context_instance=RequestContext(request))
 
 @get_prefs
 def get_tagged(request, colorscheme, bgimage, slugified_tag):
@@ -41,4 +41,4 @@ def get_tagged(request, colorscheme, bgimage, slugified_tag):
 @get_prefs
 def get_post(request, colorscheme, bgimage, slugified_title):
     entry = get_object_or_404(Entry, slug=slugified_title)
-    return render_to_response("single_entry.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("barebones-entry.html", locals(), context_instance=RequestContext(request))
