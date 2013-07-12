@@ -2,13 +2,6 @@
 {% block title %}Galleries{% endblock %}
 {% block styles %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/galleries_index.css" />
-  {% if bgimage %}
-    <style type="text/css">
-      body {
-        background-image:url("{{ bgimage.background_image.url }}")
-      }
-    </style>
-  {% endif %}
 {% endblock %}
 {% block scripts %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/galleries_index.js"></script>

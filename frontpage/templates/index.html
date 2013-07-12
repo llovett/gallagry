@@ -33,13 +33,6 @@
 	-webkit-transform:rotate({{ blog_link_rot }}deg);
 	-ms-transform:rotate({{ blog_link_rot }}deg);
     }	
-
-    {% if bgimage %}
-      body {
-          background-image:url("{{ bgimage.background_image.url }}");
-      }
-    {% endif %}
-
   </style>
   <link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.freetrans.css" type="text/css" media="screen" />
