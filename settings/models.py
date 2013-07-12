@@ -1,6 +1,7 @@
 from django.db import models
-from sorl.thumbnail import ImageField
+from sorl.thumbnail import ImageField, get_thumbnail
 from colorful.fields import RGBColorField
+from django.core.files.base import ContentFile
 import datetime
 
 class ColorScheme(models.Model):
@@ -17,20 +18,15 @@ class ColorScheme(models.Model):
         return self.title
 
     def save(self):
-        if self.use_for_mainpage:
+        if self.use_for_mainpage or self.use_for_galleries or self.use_for_blog:
             other_schemes = ColorScheme.objects.exclude(id=self.id)
             for scheme in other_schemes:
-                scheme.use_for_mainpage = False
-                scheme.save()
-        if self.use_for_galleries:
-            other_schemes = ColorScheme.objects.exclude(id=self.id)
-            for scheme in other_schemes:
-                scheme.use_for_galleries = False
-                scheme.save()
-        if self.use_for_blog:
-            other_schemes = ColorScheme.objects.exclude(id=self.id)
-            for scheme in other_schemes:
-                scheme.use_for_blog = False
+                if self.use_for_mainpage:
+                    scheme.use_for_mainpage = False
+                if self.use_for_blog:
+                    scheme.use_for_blog = False
+                if self.use_for_galleries:
+                    scheme.use_for_galleries = False
                 scheme.save()
         super(ColorScheme,self).save()
 
@@ -47,19 +43,28 @@ class BackgroundImage(models.Model):
         return self.title if self.title else self.background_image.name
 
     def save(self):
-        if self.use_for_mainpage:
+        if self.use_for_blog or self.use_for_mainpage or self.use_for_galleries:
             other_imgs = BackgroundImage.objects.exclude(id=self.id)
             for img in other_imgs:
-                img.use_for_mainpage = False
+                if self.use_for_mainpage:
+                    img.use_for_mainpage = False
+                if self.use_for_galleries:
+                    img.use_for_galleries = False
+                if self.use_for_blog:
+                    img.use_for_blog = False
                 img.save()
-        if self.use_for_galleries:
-            other_imgs = BackgroundImage.objects.exclude(id=self.id)
-            for img in other_imgs:
-                img.use_for_galleries = False
-                img.save()
-        if self.use_for_blog:
-            other_imgs = BackgroundImage.objects.exclude(id=self.id)
-            for img in other_imgs:
-                img.use_for_blog = False
-                img.save()
+
+        if not self.id:
+            super(BackgroundImage,self).save()
+
+            # Make a sane version of the background image, for display as background
+            # TODO: is there a more efficient way of doing this, instead of saving two HUGE
+            # images to disk, and storing one of them entirely in memory for awhile?
+            sane_image = get_thumbnail(self.background_image,
+                                       "2880x1800",
+                                       upscale=False,
+                                       progressive=True,
+                                       quality=50)
+            self.background_image.save(sane_image.name, ContentFile(sane_image.read()), True)
+
         super(BackgroundImage,self).save()
