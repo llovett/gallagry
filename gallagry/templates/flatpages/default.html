@@ -21,3 +21,8 @@
     {{ flatpage.content }}
   </div>
 {% endblock %}
+{% block navigation %}
+  {{ block.super }}
+  {% load breadcrumb_tags %}
+  {% add_crumb flatpage.title flatpage.url %}
+{% endblock %}
