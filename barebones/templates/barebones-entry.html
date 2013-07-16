@@ -3,10 +3,10 @@
 {% block title %}{{ entry.title }}{% endblock %}
 {% block meta %}
   {{ block.super }}
+  <meta name="description" content="{{ entry.content|striptags|truncatewords:50 }}" />
   <meta property="og:title" content="{{ entry.title }}" />
   <meta property="og:description" content="{{ entry.content|striptags|truncatewords:50 }}" />
   <meta property="og:url" content="http://{{ SITE.domain}}{{ request.path }}" />
-  <meta property="og:site_name" content="{{ entry.title }}" />
   <meta property="og:type" content="article" />
   <meta property="article:published_time" content="{{ entry.created|date:"Y-m-d" }}" />
   <meta property="article:modified_time" content="{{ entry.last_modified|date:"Y-m-d" }}" />
@@ -41,7 +41,7 @@
       <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{% url get_post entry.slug %}"></div>
     </span>      
     <span class="social-button">
-      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="{% url get_post entry.slug %}" data-size="small" data-count="none" data-text="{{ entry.title }}, from Matthew Gallagher">Tweet</a>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://{{ SITEI.domain }}{% url get_post entry.slug %}" data-size="small" data-count="none" data-text="{{ entry.title }}, from the Gallagry of Matthew Gallagher" data-hashtags="gallagry, matthewgallagher">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </span>
   </div>
