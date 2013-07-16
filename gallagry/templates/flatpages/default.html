@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% block meta %}
+  {% if "bio" in flatpage.title|lower %}
+    <!-- open graph profile stuff -->
+    <meta property="profile:first_name" content="Matthew" />
+    <meta property="profile:last_name" content="Gallagher" />
+    <meta property="profile:username" content="matthew.gallagher2" />
+    <meta property="profile:gender" content="male" />
+  {% endif %}
+{% endblock %}
 {% block styles %}
   {% if flatpage.background_image %}
     <style type="text/css">

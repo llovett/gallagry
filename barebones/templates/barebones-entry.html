@@ -11,10 +11,8 @@
   <meta property="article:published_time" content="{{ entry.created|date:"Y-m-d" }}" />
   <meta property="article:modified_time" content="{{ entry.last_modified|date:"Y-m-d" }}" />
   <meta property="article:expiration_time" content="{{ expiry|date:"Y-m-d" }}" />
-  <meta property="article:author:first_name" content="Matthew" />
-  <meta property="article:author:last_name" content="Gallagher" />
-  <meta property="article:author:username" content="matthew.gallagher2" />
-  <meta property="article:author:gender" content="male" />
+  <!-- this is a hard-coded url! Bio MUST be located at /bio/ -->
+  <meta property="article:author" content="http://{{ SITE.domain }}/bio" />
 {% endblock %}
 
 {% block content %}
