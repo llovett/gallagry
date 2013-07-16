@@ -8,8 +8,10 @@
   <script type="text/javascript">
     $(document).ready(
 	function() {
-	    var galleries = {{ all_galleries|length }};
-	    $("body").css("width", 550*galleries);
+            var galleries = {{ all_galleries|length }};
+            var mod_width = 550*galleries;
+            var win_width = $(window).width();
+            $("body").css("width", (mod_width < win_width ? win_width : mod_width)+"px");
 	}
     );
   </script>
