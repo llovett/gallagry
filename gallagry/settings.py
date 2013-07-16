@@ -180,6 +180,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.media',
     'django.core.context_processors.i18n',
+
+    'siteurl.context_processors.sites',
 )
 
 # A sample logging configuration. The only tangible logging
