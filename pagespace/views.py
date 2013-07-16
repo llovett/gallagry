@@ -55,9 +55,12 @@ def render_flatpage(request, f):
     f.title = mark_safe(f.title)
     f.content = mark_safe(f.content)
 
-    c = RequestContext(request, {
-        'flatpage': f,
-    })
+    context_dict = {'flatpage':f}
+    if f.background_image:
+        context_dict['bgimage'] = f.background_image
+    if f.colorscheme:
+        context_dict['colorscheme'] = f.colorscheme
+    c = RequestContext(request, context_dict)
     response = HttpResponse(t.render(c))
     populate_xheaders(request, response, FlatPage, f.id)
     return response

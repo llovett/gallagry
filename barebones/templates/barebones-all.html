@@ -9,7 +9,7 @@
 {% load humanize %}
 <ul class="list-posts">
 {% for entry in entries %}
-<li class="item-post">
+<li class="item-post readable_box">
   <a href="{% url get_post entry.slug %}"><h3>{{ entry.title }}</h3></a>
   <div class="date">Last updated {{ entry.last_modified|naturaltime }}.</div>
   <div class="entry_content">

@@ -9,38 +9,15 @@
   {% endif %}
 {% endblock %}
 {% block styles %}
-  {% if flatpage.background_image %}
-    <style type="text/css">
-      body {
-        background-image:url("{{ flatpage.background_image.background_image.url }}");
-      }
-    </style>
-  {% endif %}
-  {% if flatpage.colorscheme %}
-    <style type="text/css">
-      {% with flatpage.colorscheme as colorscheme %}
-	body, html, #content {
-    	  background-color:{{ colorscheme.background_color }};
-    	  color:{{ colorscheme.foreground_color }};
-	}
-        #content {
-          border:{{ colorscheme.foreground_color }} 2px solid;
-        }
-	a {
-    	  color:{{ colorscheme.link_color }};
-	}
-	a:hover {
-      	  color:{{ colorscheme.rollover_color }};
-	}
-      {% endwith %}
-      {% endif %}
-    </style>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/flatpage.css" type="text/css" media="screen" />
+  {{ block.super }}
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/flatpage.css" type="text/css" media="screen" />
 {% endblock %}
 {% block title %}Matthew Gallagher - {{ flatpage.title }}{% endblock %}
 {% block header %}
   <h2>{{ flatpage.title }}</h2>
 {% endblock %}
 {% block content %}
-  {{ flatpage.content }}
+  <div class="readable_box">
+    {{ flatpage.content }}
+  </div>
 {% endblock %}
