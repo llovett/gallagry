@@ -43,20 +43,25 @@ class BackgroundImage(models.Model):
         return self.title if self.title else self.background_image.name
 
     def save(self):
-        if self.use_for_blog or self.use_for_mainpage or self.use_for_galleries:
-            other_imgs = BackgroundImage.objects.exclude(id=self.id)
-            for img in other_imgs:
-                if self.use_for_mainpage:
-                    img.use_for_mainpage = False
-                if self.use_for_galleries:
-                    img.use_for_galleries = False
-                if self.use_for_blog:
-                    img.use_for_blog = False
-                img.save()
+        if self.use_for_blog:
+            others = BackgroundImage.objects.filter(use_for_blog=True).exclude(id=self.id)
+            for o in others:
+                o.use_for_blog = False
+                o.save()
+        if self.use_for_galleries:
+            others = BackgroundImage.objects.filter(use_for_galleries=True).exclude(id=self.id)
+            for o in others:
+                o.use_for_galleries = False
+                o.save()
+        if self.use_for_mainpage:
+            others = BackgroundImage.objects.filter(use_for_mainpage=True).exclude(id=self.id)
+            for o in others:
+                o.use_for_mainpage = False
+                o.save()
 
-        if not self.id:
-            super(BackgroundImage,self).save()
-
+        old_bgimage = self.background_image
+        super(BackgroundImage,self).save()
+        if old_bgimage != self.background_image:
             # Make a sane version of the background image, for display as background
             # TODO: is there a more efficient way of doing this, instead of saving two HUGE
             # images to disk, and storing one of them entirely in memory for awhile?
@@ -66,5 +71,4 @@ class BackgroundImage(models.Model):
                                        progressive=True,
                                        quality=50)
             self.background_image.save(sane_image.name, ContentFile(sane_image.read()), True)
-
-        super(BackgroundImage,self).save()
+            super(BackgroundImage,self).save()
