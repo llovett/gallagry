@@ -5,6 +5,7 @@
   {{ block.super }}
   <meta property="og:title" content="{{ entry.title }}" />
   <meta property="og:description" content="{{ entry.content|striptags|truncatewords:50 }}" />
+  <meta property="og:url" content="http://{{ SITE.domain}}{{ request.path }}" />
 {% endblock %}
 
 {% block content %}
