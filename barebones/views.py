@@ -5,6 +5,7 @@ from settings import models as prefs
 from tagging.models import Tag, TaggedItem
 from re import sub
 from functools import wraps
+import datetime
 
 def get_prefs(view):
     @wraps(view)
@@ -41,4 +42,5 @@ def get_tagged(request, colorscheme, bgimage, slugified_tag):
 @get_prefs
 def get_post(request, colorscheme, bgimage, slugified_title):
     entry = get_object_or_404(Entry, slug=slugified_title)
+    expiry = datetime.timedelta(days=365) + entry.created
     return render_to_response("barebones-entry.html", locals(), context_instance=RequestContext(request))
