@@ -18,16 +18,21 @@ class ColorScheme(models.Model):
         return self.title
 
     def save(self):
-        if self.use_for_mainpage or self.use_for_galleries or self.use_for_blog:
-            other_schemes = ColorScheme.objects.exclude(id=self.id)
-            for scheme in other_schemes:
-                if self.use_for_mainpage:
-                    scheme.use_for_mainpage = False
-                if self.use_for_blog:
-                    scheme.use_for_blog = False
-                if self.use_for_galleries:
-                    scheme.use_for_galleries = False
-                scheme.save()
+        if self.use_for_blog:
+            others = ColorScheme.objects.filter(use_for_blog=True).exclude(id=self.id)
+            for o in others:
+                o.use_for_blog = False
+                o.save()
+        if self.use_for_galleries:
+            others = ColorScheme.objects.filter(use_for_galleries=True).exclude(id=self.id)
+            for o in others:
+                o.use_for_galleries = False
+                o.save()
+        if self.use_for_mainpage:
+            others = ColorScheme.objects.filter(use_for_mainpage=True).exclude(id=self.id)
+            for o in others:
+                o.use_for_mainpage = False
+                o.save()
         super(ColorScheme,self).save()
 
 class BackgroundImage(models.Model):
