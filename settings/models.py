@@ -74,6 +74,6 @@ class BackgroundImage(models.Model):
                                        "2880x1800",
                                        upscale=False,
                                        progressive=True,
-                                       quality=50)
+                                       quality=85)
             self.background_image.save(sane_image.name, ContentFile(sane_image.read()), True)
             super(BackgroundImage,self).save()
