@@ -7,6 +7,18 @@ import settings
 
 admin.autodiscover()
 
+# Getting rid of some stuff in the admin site
+from django.contrib.auth.models import User, Group
+from paypal.standard.ipn.models import PayPalIPN
+from django.contrib.sites.models import Site
+from tagging.models import Tag, TaggedItem
+admin.site.unregister(User)
+admin.site.unregister(Group)
+admin.site.unregister(PayPalIPN)
+admin.site.unregister(Site)
+admin.site.unregister(Tag)
+admin.site.unregister(TaggedItem)
+
 urlpatterns = patterns(
     '',
     # Uncomment the admin/doc line below to enable admin documentation:
