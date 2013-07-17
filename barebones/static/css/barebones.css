@@ -16,10 +16,6 @@ li.item-post {
     padding:10px;
 }	
 
-li.item-post p, div.entry_content p {
-    margin:5px 0;
-}
-
 ul.list-tags {
     padding:0;
     margin:0;

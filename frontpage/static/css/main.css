@@ -88,15 +88,15 @@ body, html {
 }
 
 h1 {
-    font-size:4.5em;
+    font-size:3.5em;
 }
 
 h2 {
-    font-size:3em;
+    font-size:2em;
 }
 
 h3 {
-    font-size:2em;
+    font-size:1.5em;
 }
 
 #index_header {
@@ -108,6 +108,12 @@ h3 {
 #navigation {
     margin-top:10px;
 }
+
+p {
+    margin:1em 0;
+    line-height:1.2em;
+}
+
 /****** END BLOCK STYLES ******/
 
 
@@ -152,7 +158,7 @@ li {
 }
 
 .main_page_link {
-    font-size:2em;
+    font-size:1.5em;
     font-weight:bold;
 }
 
