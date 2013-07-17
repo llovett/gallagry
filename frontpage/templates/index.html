@@ -172,9 +172,9 @@ $(document).ready(
     {% if galleries|length > 0 %}
       <br />
       {% load thumbnail %}
-      <marquee style="width:200px" id="gallery-marquee">
+      <marquee style="width:200px;height:100px" id="gallery-marquee">
       {% for gallery in galleries %}
-	{% thumbnail gallery.preview_image "20x20" crop="center" as im %}
+	{% thumbnail gallery.preview_image "40x40" crop="center" as im %}
 	<a href="{% url galleries_show gallery.id %}">
 	  <img src="{{ im.url }}" alt="{{ gallery.title }}" />
 	</a>
