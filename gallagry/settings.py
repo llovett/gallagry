@@ -3,7 +3,7 @@
 # ---------------------------------------
 # Matt --- Configure these to your liking
 
-PAYPAL_RECEIVER_EMAIL = "wolfinsilver@gmail.com"
+PAYPAL_RECEIVER_EMAIL = "zxcv@zxcv.co.uk"
 
 # ---------------------------------------
 

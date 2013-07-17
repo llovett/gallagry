@@ -39,4 +39,11 @@ urlpatterns = patterns(
 
     # Blog stuff:
     url(r'^news/', include('barebones.urls')),
+
+    # Paypal
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += patterns(
+    '',
+    (r'^pay/for/art/', include('paypal.standard.ipn.urls')),
+)
