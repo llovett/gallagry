@@ -173,6 +173,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'relative_urls':False,
     'file_browser_callback': 'mce_filebrowser'
 }
+FORCE_LOWERCASE_TAGS = True
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
