@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from pagespace.models import FlatPage
+from galleries.models import Gallery
 from frontpage.models import GalleryLinkPosition, BlogLinkPosition
 from settings.models import BackgroundImage, ColorScheme
 import json
@@ -29,6 +30,9 @@ def main_page(request):
     link_selectors = [("link_%d"%link.id,link.rotation) for link in FlatPage.objects.all()]
     link_selectors.append(("gallery_link",gallery_link_rot))
     link_selectors.append(("blog_link",blog_link_rot))
+
+    # Gallery preview images
+    galleries = Gallery.objects.all()
 
     # background image
     try:

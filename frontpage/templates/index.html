@@ -32,7 +32,7 @@
 	-o-transform:rotate({{ blog_link_rot }}deg);
 	-webkit-transform:rotate({{ blog_link_rot }}deg);
 	-ms-transform:rotate({{ blog_link_rot }}deg);
-    }	
+    }
   </style>
   <link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.freetrans.css" type="text/css" media="screen" />
@@ -137,7 +137,7 @@ $(document).ready(
 		    );
 
 		    $.post("/edit/", JSON.stringify({"transforms":matrices}));
-		    
+
 		    $(this).removeClass("itsdone");
 		    $(this).addClass("editit");
 		    $(this).text("edit");
@@ -148,6 +148,8 @@ $(document).ready(
 );
   </script>
   {% endif %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simplemarquee.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/index.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -160,11 +162,30 @@ $(document).ready(
   <!-- flatpages -->
   {% get_flatpages as pages %}
   {% for page in pages %}
-    <a href="{{ page.url }}" id="link_{{ page.id }}" class="main_page_link">{{ page.title|upper }}</a>
+    <div id="link_{{ page.id }}" class="main_page_link">
+      <a href="{{ page.url }}">{{ page.title|upper }}</a>
+    </div>
   {% endfor %}
 
-  <a href="{% url galleries_index %}" id="gallery_link" class="main_page_link">VISUAL ART</a>
-  <a href="/news/" id="blog_link" class="main_page_link">NEWS</a>
+  <div id="gallery_link" class="main_page_link">
+    <a href="{% url galleries_index %}">VISUAL ART</a>
+    {% if galleries|length > 0 %}
+      <br />
+      {% load thumbnail %}
+      <marquee style="width:200px" id="gallery-marquee">
+      {% for gallery in galleries %}
+	{% thumbnail gallery.preview_image "20x20" crop="center" as im %}
+	<a href="{% url galleries_show gallery.id %}">
+	  <img src="{{ im.url }}" alt="{{ gallery.title }}" />
+	</a>
+	{% endthumbnail %}
+      {% endfor %}
+    </marquee>
+    {% endif %}
+  </div>
+  <div id="blog_link" class="main_page_link">
+    <a href="/news/">NEWS</a>
+  </div>
 {% endblock %}
 
 {% block page_edit_link %}

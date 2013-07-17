@@ -11,3 +11,19 @@
     color:black;
     padding:10px;
 }
+
+#gallery-marquee {
+    position:relative;
+    overflow:hidden;
+    width:100%;
+}
+#gallery-marquee .sections {
+    position:absolute;
+    left:0px;
+    top:0px;
+    white-space:nowrap;
+}
+#gallery-marquee .section {
+    padding:0px 10px;
+    float:left;
+}
