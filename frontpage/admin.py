@@ -1,10 +1,13 @@
 from django.contrib import admin
 from frontpage.models import GalleryLinkPosition, BlogLinkPosition
 
-class GLPositionAdmin(admin.ModelAdmin):
+class FrontPageAdmin(admin.ModelAdmin):
+    verbose_name = "Front Page"
+
+class GLPositionAdmin(FrontPageAdmin):
     pass
 
-class BLPositionAdmin(admin.ModelAdmin):
+class BLPositionAdmin(FrontPageAdmin):
     pass
 
 admin.site.register(GalleryLinkPosition, GLPositionAdmin)

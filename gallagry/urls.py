@@ -1,10 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from myadmin.sites import MyAdminSite
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from frontpage import views
 import settings
 
+admin.site = MyAdminSite()
 admin.autodiscover()
 
 # Getting rid of some stuff in the admin site

@@ -15,5 +15,6 @@ class FlatPageAdmin(MCEFilebrowserAdmin):
     )
     list_display = ('url', 'title')
     search_fields = ('url', 'title')
+    verbose_name = "Custom Pages"
 
 admin.site.register(FlatPage, FlatPageAdmin)

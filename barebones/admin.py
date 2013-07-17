@@ -7,5 +7,6 @@ class EntryAdmin(MCEFilebrowserAdmin):
     form = EntryForm
     prepopulated_fields = {"slug":("title",)}
     search_fields = ('title','content')
+    verbose_name = "News"
 
 admin.site.register(Entry, EntryAdmin)

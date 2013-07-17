@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'galleries',
     'pagespace',
     'grappelli',
+    'myadmin',
     'django.contrib.admin',
     'sorl.thumbnail',
     'paypal.standard.ipn',

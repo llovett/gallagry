@@ -1,10 +1,13 @@
 from django.contrib import admin
 from settings.models import ColorScheme, BackgroundImage
 
-class ColorSchemeAdmin(admin.ModelAdmin):
+class SettingsAdmin(admin.ModelAdmin):
+    verbose_name = "Look and Feel"
+
+class ColorSchemeAdmin(SettingsAdmin):
     pass
 
-class BackgroundImageAdmin(admin.ModelAdmin):
+class BackgroundImageAdmin(SettingsAdmin):
     pass
 
 admin.site.register(ColorScheme, ColorSchemeAdmin)
