@@ -27,7 +27,7 @@
 	  <li class="gallery_title">{{ gallery.title }}</li>
 	  <li>
 	    <div class="gallery_image_wrap">
-      	      {% thumbnail gallery.preview_image "500x500" crop="center" quality="100" as im %}
+      	      {% thumbnail gallery.preview_image "500x500" crop="center" quality=100 as im %}
 	        <img src="{{ im.url }}" alt="{{ gallery.title }}" class="gallery_preview" />
 	      {% empty %}
 		<hr class="gallery_preview" />
