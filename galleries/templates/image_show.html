@@ -8,7 +8,7 @@
   <!-- thumbnail preview of artwork, with link to full-size -->
   {% load thumbnail %}
   <div id="image_preview">
-    {% thumbnail image.image "500" quality=100 as im %}
+    {% thumbnail image.image "500" quality=100 format="PNG" as im %}
       <a href="{{ image.image.url }}">
         <img src="{{ im.url }}" alt="{{ image.title }}" />
       </a>
