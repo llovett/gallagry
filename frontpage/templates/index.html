@@ -168,13 +168,13 @@ $(document).ready(
   {% endfor %}
 
   <div id="gallery_link" class="main_page_link">
-    <a href="{% url galleries_index %}">VISUAL ART</a>
+    <a href="{% url galleries_index %}">GALLERIES</a>
     {% if galleries|length > 0 %}
       <br />
       {% load thumbnail %}
-      <marquee style="width:200px;height:100px" id="gallery-marquee">
+      <marquee style="width:400px;height:200px" id="gallery-marquee">
       {% for gallery in galleries %}
-	{% thumbnail gallery.preview_image "40x40" crop="center" as im %}
+	{% thumbnail gallery.preview_image "100x100" crop="center" as im %}
 	<a href="{% url galleries_show gallery.id %}">
 	  <img src="{{ im.url }}" alt="{{ gallery.title }}" />
 	</a>
