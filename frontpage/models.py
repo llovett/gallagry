@@ -31,3 +31,17 @@ class BlogLinkPosition(models.Model):
 
     def __unicode__(self):
         return "blog at (%d,%d) rotated %f"%(self.pos_x,self.pos_y,self.rotation)
+
+class Tagline(models.Model):
+    tagtext = models.CharField(max_length=1000, verbose_name="Tagline")
+    is_default = models.BooleanField(default=True, verbose_name="Make this your default tagline")
+
+    def save(self):
+        if self.is_default:
+            for other in Tagline.objects.exclude(id=self.id):
+                other.is_default = False
+                other.save()
+        super(Tagline, self).save()
+
+    def __unicode__(self):
+        return self.tagtext

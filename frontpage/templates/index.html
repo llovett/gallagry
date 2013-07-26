@@ -155,6 +155,9 @@ $(document).ready(
 {% block header %}
   <div id="index_header">
     <h1>MATTHEW GALLAGHER</h1>
+    {% if tagline %}
+      <h3 class="tagline">{{ tagline.tagtext }}</h3>
+    {% endif %}
   </div>
 {% endblock %}
 

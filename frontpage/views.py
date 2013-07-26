@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from pagespace.models import FlatPage
 from galleries.models import Gallery
-from frontpage.models import GalleryLinkPosition, BlogLinkPosition
+from frontpage.models import GalleryLinkPosition, BlogLinkPosition, Tagline
 from settings.models import BackgroundImage, ColorScheme
 import json
 
@@ -46,6 +46,12 @@ def main_page(request):
     except ColorScheme.DoesNotExist:
         pass
 
+    # Tagline
+    try:
+        tagline = Tagline.objects.get(is_default=True)
+    except Tagline.DoesNotExist:
+        tagline = None
+    
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def change_links(request):
