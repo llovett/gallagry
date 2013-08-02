@@ -143,27 +143,4 @@ li {
 
 
 /****** CLASS STYLES ******/
-.edit_link, .hovering_edit_link, .edit_link:hover, .hovering_edit_link:hover {
-    color:black;
-    background-color:white;
-    padding:10px;
-}
-
-.hovering_edit_link {
-    display:none;
-    position:absolute;
-    top:0px;
-    left:0px;
-    z-index:100;
-}
-
-.main_page_link {
-    font-size:1.5em;
-    font-weight:bold;
-}
-
-.edit_link {
-    position:relative;
-    top:10px;
-}
 /****** END CLASS STYLES ******/

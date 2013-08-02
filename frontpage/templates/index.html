@@ -103,7 +103,7 @@ $(document).ready(
 	    function() {
 		if ($(this).hasClass("editit")) {
 		    // TODO: call freetrans() with current rotation, position
-		    $(".main_page_link").each(
+		    $(".link-container").each(
 			function(){
 			    $(this).freetrans({
 				x:$(this).offset().left,
@@ -118,7 +118,7 @@ $(document).ready(
 		    $(this).addClass("itsdone");
 		    $(this).text("done");
 		} else if ($(this).hasClass("itsdone")) {
-		    $(".main_page_link").each(
+		    $(".link-container").each(
 			function() {
 			    var id_parts = $(this).prop("id").split("_");
 			    var last_part = id_parts[id_parts.length-1];
@@ -147,6 +147,9 @@ $(document).ready(
     }
 );
   </script>
+{% endif %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.transit.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.breathe.js"></script>
   <script type="text/javascript">
     $(document).ready(
 	// Fixes the width of the marquee for the number of galleries present
@@ -158,7 +161,22 @@ $(document).ready(
 	}
     );
   </script>
-  {% endif %}
+  
+  <!-- add breathing effect to front page links -->
+  <script type="text/javascript">
+    $(document).ready(
+	function() {
+    	    $("a.main-page-link").each(
+    		function() {
+    		    var speed = Math.floor(Math.random() * 3000) + 5000;
+    		    var amount = Math.random() * 0.1;
+    		    $(this).breathe({"amount":amount, "speed":speed});
+    		}
+    	    )
+	}
+    );
+  </script>
+
   <script type="text/javascript" src="{{ STATIC_URL }}js/index.js"></script>
 {% endblock %}
 
@@ -175,13 +193,13 @@ $(document).ready(
   <!-- flatpages -->
   {% get_flatpages as pages %}
   {% for page in pages %}
-    <div id="link_{{ page.id }}" class="main_page_link">
-      <a href="{{ page.url }}">{{ page.title|upper }}</a>
+    <div id="link_{{ page.id }}" class="link-container">
+      <a href="{{ page.url }}" class="main-page-link">{{ page.title|upper }}</a>
     </div>
   {% endfor %}
 
-  <div id="gallery_link" class="main_page_link">
-    <a href="{% url galleries_index %}">GALLERIES</a>
+  <div id="gallery_link" class="link-container">
+    <a href="{% url galleries_index %}" class="main-page-link">GALLERIES</a>
     {% if galleries|length > 0 %}
       <br />
       {% load thumbnail %}
@@ -196,8 +214,8 @@ $(document).ready(
       </div>
     {% endif %}
   </div>
-  <div id="blog_link" class="main_page_link">
-    <a href="/news/">NEWS</a>
+  <div id="blog_link" class="link-container">
+    <a href="/news/" class="main-page-link">NEWS</a>
   </div>
 {% endblock %}
 
