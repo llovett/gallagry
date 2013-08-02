@@ -147,6 +147,17 @@ $(document).ready(
     }
 );
   </script>
+  <script type="text/javascript">
+    $(document).ready(
+	// Fixes the width of the marquee for the number of galleries present
+	function() {
+	    $("#gallery-marquee").css({
+		"width": (({{ galleries|length }}+1)*100)+"px",
+		"height": "200px"
+	    });
+	}
+    );
+  </script>
   {% endif %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/index.js"></script>
 {% endblock %}

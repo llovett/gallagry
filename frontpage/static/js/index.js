@@ -2,7 +2,7 @@ $(document).ready(function(){
     // Marquee scrolling solution from http://stackoverflow.com/questions/2143056/seamless-jquery-marquee
     var marquee = $("#gallery-marquee");
 
-    marquee.css({"overflow": "hidden", "width": "420px", "height": "200px"});
+    marquee.css({"overflow": "hidden"});
 
     // wrap "My Text" with a span (old versions of IE don't like divs inline-block)
     marquee.wrapInner("<span>");
