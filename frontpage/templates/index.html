@@ -148,7 +148,6 @@ $(document).ready(
 );
   </script>
   {% endif %}
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simplemarquee.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/index.js"></script>
 {% endblock %}
 
@@ -175,15 +174,15 @@ $(document).ready(
     {% if galleries|length > 0 %}
       <br />
       {% load thumbnail %}
-      <marquee style="width:400px;height:200px" id="gallery-marquee">
-      {% for gallery in galleries %}
-	{% thumbnail gallery.preview_image "100x100" crop="center" as im %}
-	<a href="{% url galleries_show gallery.id %}">
-	  <img src="{{ im.url }}" alt="{{ gallery.title }}" />
-	</a>
-	{% endthumbnail %}
-      {% endfor %}
-    </marquee>
+      <div id="gallery-marquee">
+        {% for gallery in galleries %}
+  	  {% thumbnail gallery.preview_image "100x100" crop="center" as im %}
+    	    <a href="{% url galleries_show gallery.id %}">
+  	      <img src="{{ im.url }}" alt="{{ gallery.title }}" />
+  	    </a>
+  	  {% endthumbnail %}
+        {% endfor %}
+      </div>
     {% endif %}
   </div>
   <div id="blog_link" class="main_page_link">
