@@ -42,6 +42,7 @@ def image_show(request, gallery_id, image_id):
         "business": settings.PAYPAL_RECEIVER_EMAIL,
         "amount": image.price,
         "item_name": image.title,
+        "item_number": image.id,
         "invoice": random_string(),
         "notify_url": "%s%s"%(mysite.domain, reverse('paypal-ipn')),
         "return_url": reverse("purchase_return",args=(gallery.id,image_id,)),
@@ -62,6 +63,9 @@ def image_show(request, gallery_id, image_id):
 
 def purchase_return(request, gallery_id, image_id):
     image = get_object_or_404(models.Image, id=image_id)
+    image.sold = True
+    image.for_sale = False
+    image.save()
     messages.add_message(request, messages.ERROR, "Your purchase of %s was been completed."%image.title)
     return reverse("image_detail", args=(gallery_id, image_id,))
 

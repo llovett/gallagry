@@ -27,6 +27,11 @@
 	<p>You can purchase <em>{{ image.title }}</em> for {{ image.price|to_currency }}.</p>
         {{ form }}
       </div>
+    {% elif image.sold %}
+      <hr />
+      <div id="artwork_sale">
+	<p>{{ image.title }} sold for {{ image.price }}.</p>
+      </div>
     {% endif %}
   </div>
 {% endblock %}
