@@ -47,10 +47,10 @@ def image_show(request, gallery_id, image_id):
         "return_url": reverse("purchase_return",args=(gallery.id,image_id,)),
         "cancel_return": reverse("purchase_cancel",args=(gallery.id,image_id,))
     }
-    form = PayPalPaymentsForm(initial=paypal_dict)
+    the_form = PayPalPaymentsForm(initial=paypal_dict)
 
     # Change this in production!
-    form = form.sandbox()
+    form = the_form.sandbox()
 
     # Use gallery colorscheme
     try:
