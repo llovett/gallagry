@@ -63,9 +63,9 @@ def image_show(request, gallery_id, image_id):
 def purchase_return(request, gallery_id, image_id):
     image = get_object_or_404(models.Image, id=image_id)
     messages.add_message(request, messages.ERROR, "Your purchase of %s was been completed."%image.title)
-    return reverse("image_detail", args=(image_id,))
+    return reverse("image_detail", args=(gallery_id, image_id,))
 
 def purchase_cancel(request, gallery_id, image_id):
     image = get_object_or_404(models.Image, id=image_id)
     messages.add_message(request, messages.ERROR, "Your purchase of %s was cancelled."%image.title)
-    return reverse("image_detail", args=(image_id,))
+    return reverse("image_detail", args=(gallery_id, image_id,))
