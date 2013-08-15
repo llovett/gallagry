@@ -30,14 +30,15 @@ def galleries_index(request):
     return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
 
 def galleries_show(request, gallery):
-    gallery = get_object_or_404(models.Gallery, title=gallery)
+    gallery = get_object_or_404(models.Gallery, title_slug=gallery)
     all_images = gallery.image_set.all()
     colorscheme = gallery.colorscheme
     return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request, locals()))
 
 @ensure_csrf_cookie
 def image_show(request, image):
-    image = get_object_or_404(models.Image, title=image)
+    image = get_object_or_404(models.Image, title_slug=image)
+    gallery = image.gallery
 
     # Paypal form info
     mysite = Site.objects.get_current()
@@ -50,8 +51,8 @@ def image_show(request, image):
         "no_shipping": PayPalPaymentsForm.SHIPPING_CHOICES[1][0],
         "invoice": random_string(),
         "notify_url": "http://%s%s"%(domain, reverse('paypal-ipn')),
-        "return_url": "http://%s%s"%(domain, reverse("purchase_return",args=(image.title,))),
-        "cancel_return": "http://%s%s"%(domain, reverse("purchase_cancel",args=(image.title,)))
+        "return_url": "http://%s%s"%(domain, reverse("purchase_return",args=(image.title_slug,))),
+        "cancel_return": "http://%s%s"%(domain, reverse("purchase_cancel",args=(image.title_slug,)))
     }
     the_form = PayPalPaymentsForm(initial=paypal_dict)
 
@@ -68,12 +69,12 @@ def image_show(request, image):
 
 @csrf_exempt
 def purchase_return(request, image):
-    image = get_object_or_404(models.Image, title=image.title)
+    image = get_object_or_404(models.Image, title_slug=image.title_slug)
     messages.add_message(request, messages.SUCCESS, "Your purchase of %s was been completed."%image.title)
-    return redirect("image_show", image.title)
+    return redirect("image_show", image.title_slug)
 
 @csrf_exempt
 def purchase_cancel(request, image):
-    image = get_object_or_404(models.Image, title=image.title)
+    image = get_object_or_404(models.Image, title_slug=image.title_slug)
     messages.add_message(request, messages.ERROR, "Your purchase of %s was cancelled."%image.title)
-    return redirect("image_show", image.title)
+    return redirect("image_show", image.title_slug)
