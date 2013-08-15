@@ -1,5 +1,6 @@
 from django.db import models
 from sorl.thumbnail import ImageField
+from paypal.standard.ipn.signals import payment_was_successful
 
 class Image(models.Model):
     image = ImageField(upload_to='images')
@@ -28,3 +29,17 @@ class Gallery(models.Model):
 
     def __unicode__(self):
         return self.title
+
+def payment_complete(sender, **kwargs):
+    ipn_obj = sender
+    image_id = int(ipn_obj.item_number)
+    
+    try:
+        image = Image.objects.get(id=image_id)
+        image.for_sale = False
+        image.sold = True
+        image.save()
+    except Image.DoesNotExist:
+        pass
+
+payment_was_successful.connect(payment_complete)
