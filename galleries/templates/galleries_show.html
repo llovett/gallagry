@@ -22,7 +22,7 @@
   <ul class="gallery_images">
     {% for img in all_images %}
       <li class="gallery_image_item">
-	<a href="{% url image_show gallery.id img.id %}">
+	<a href="{% url image_show img.title %}">
           {% thumbnail img.image "x500" quality=100 format="PNG" as im %}
             <img src="{{ im.url }}" alt="{{ img.title }}" class="gallery_image" />
 	  {% empty %}

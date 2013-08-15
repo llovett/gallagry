@@ -206,7 +206,7 @@ $(document).ready(
       <div id="gallery-marquee">
         {% for gallery in galleries %}
   	  {% thumbnail gallery.preview_image "100x100" crop="center" as im %}
-    	    <a href="{% url galleries_show gallery.id %}">
+    	    <a href="{% url galleries_show gallery.title %}">
   	      <img src="{{ im.url }}" alt="{{ gallery.title }}" />
   	    </a>
   	  {% endthumbnail %}

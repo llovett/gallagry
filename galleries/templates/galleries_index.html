@@ -22,7 +22,7 @@
   {% load thumbnail %}
   {% for gallery in all_galleries %}
     <li>
-      <a href="{% url galleries_show gallery.id %}" class="gallery_link">
+      <a href="{% url galleries_show gallery.title %}" class="gallery_link">
 	<ul class="gallery_item_list">
 	  <li class="gallery_title">{{ gallery.title }}</li>
 	  <li>

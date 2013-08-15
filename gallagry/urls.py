@@ -28,7 +28,7 @@ urlpatterns = patterns(
 
     url(r'^$', views.main_page, name="main_page"),
     url(r'^edit/$', views.change_links, name="change_links"),
-    url(r'^galleries/', include('galleries.urls')),
+    url(r'^art/', include('galleries.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^settings/', include('settings.urls')),

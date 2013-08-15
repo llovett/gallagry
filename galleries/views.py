@@ -29,16 +29,15 @@ def galleries_index(request):
 
     return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
 
-def galleries_show(request, gallery_id):
-    gallery = get_object_or_404(models.Gallery,id=gallery_id)
+def galleries_show(request, gallery):
+    gallery = get_object_or_404(models.Gallery, title=gallery)
     all_images = gallery.image_set.all()
     colorscheme = gallery.colorscheme
     return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request, locals()))
 
 @ensure_csrf_cookie
-def image_show(request, gallery_id, image_id):
-    gallery = get_object_or_404(models.Gallery, id=gallery_id)
-    image = get_object_or_404(models.Image, id=image_id)
+def image_show(request, image):
+    image = get_object_or_404(models.Image, title=image)
 
     # Paypal form info
     mysite = Site.objects.get_current()
@@ -51,8 +50,8 @@ def image_show(request, gallery_id, image_id):
         "no_shipping": PayPalPaymentsForm.SHIPPING_CHOICES[1][0],
         "invoice": random_string(),
         "notify_url": "http://%s%s"%(domain, reverse('paypal-ipn')),
-        "return_url": "http://%s%s"%(domain, reverse("purchase_return",args=(gallery.id,image_id,))),
-        "cancel_return": "http://%s%s"%(domain, reverse("purchase_cancel",args=(gallery.id,image_id,)))
+        "return_url": "http://%s%s"%(domain, reverse("purchase_return",args=(image.title,))),
+        "cancel_return": "http://%s%s"%(domain, reverse("purchase_cancel",args=(image.title,)))
     }
     the_form = PayPalPaymentsForm(initial=paypal_dict)
 
@@ -68,13 +67,13 @@ def image_show(request, gallery_id, image_id):
     return render_to_response("image_show.html", locals(), context_instance=RequestContext(request))
 
 @csrf_exempt
-def purchase_return(request, gallery_id, image_id):
-    image = get_object_or_404(models.Image, id=image_id)
+def purchase_return(request, image):
+    image = get_object_or_404(models.Image, title=image.title)
     messages.add_message(request, messages.SUCCESS, "Your purchase of %s was been completed."%image.title)
-    return redirect("image_show", gallery_id, image_id)
+    return redirect("image_show", image.title)
 
 @csrf_exempt
-def purchase_cancel(request, gallery_id, image_id):
-    image = get_object_or_404(models.Image, id=image_id)
+def purchase_cancel(request, image):
+    image = get_object_or_404(models.Image, title=image.title)
     messages.add_message(request, messages.ERROR, "Your purchase of %s was cancelled."%image.title)
-    return redirect("image_show", gallery_id, image_id)
+    return redirect("image_show", image.title)

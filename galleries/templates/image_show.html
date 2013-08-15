@@ -39,5 +39,5 @@
 {% block navigation %}
   {{ block.super }}
   {% load breadcrumb_tags %}
-  {% add_crumb image.title "image_show" gallery.id image.id %}
+  {% add_crumb image.title "image_show" image.id %}
 {% endblock %}
