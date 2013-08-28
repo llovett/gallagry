@@ -10,7 +10,17 @@
   </style>
   {% endif %}
 {% endblock %}
-{% block scripts %}<script type="text/javascript" src="{{ STATIC_URL }}js/image_show.js"></script>{% endblock %}
+{% block scripts %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/image_show.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        var images = {{ all_images|length }};
+        var mod_width = 550*images;
+        var win_width = $(window).width();
+        $("body").css("width", (mod_width < win_width ? win_width : mod_width)+"px");
+    });
+  </script>
+{% endblock %}
 {% block header %}<h2>{{ gallery.title|upper }}</h2>{% endblock %}
 {% block content %}
   {% if gallery.description|length > 0 %}
