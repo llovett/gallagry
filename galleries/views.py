@@ -11,6 +11,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 from galleries.utils import random_string
 from galleries import models
 from settings.models import BackgroundImage, ColorScheme
+from functools import wraps
 
 def get_prefs(view):
     @wraps(view)
