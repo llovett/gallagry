@@ -13,58 +13,44 @@ from galleries import models
 from settings.models import BackgroundImage, ColorScheme
 from functools import wraps
 
-def get_prefs(view):
-    @wraps(view)
-    def wrapper(request, *args, **kwargs):
-        try:
-            colorscheme = prefs.ColorScheme.objects.get(use_for_galleries=True)
-        except prefs.ColorScheme.DoesNotExist:
-            colorscheme = None
-        try:
-            bgimage = prefs.BackgroundImage.objects.get(use_for_galleries=True)
-        except prefs.BackgroundImage.DoesNotExist:
-            bgimage = None
-        return view(request, colorscheme, bgimage, *args, **kwargs)
-    return wrapper
-
-@get_prefs
 def galleries_index(request):
     all_galleries = models.Gallery.objects.all()
 
-    return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
-
-@get_prefs
-def galleries_show(request, gallery):
-    # Background image
-    try:
-        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
-    except BackgroundImage.DoesNotExist:
-        pass
-
-    # color scheme
     try:
         colorscheme = ColorScheme.objects.get(use_for_galleries=True)
     except ColorScheme.DoesNotExist:
-        pass
+        colorscheme = None
+    try:
+        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
+    except BackgroundImage.DoesNotExist:
+        bgimage = None
 
-    gallery = get_object_or_404(models.Gallery, title_slug=gallery)
+    return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
+
+def galleries_show(request, gallery_slug):
+    try:
+        colorscheme = ColorScheme.objects.get(use_for_galleries=True)
+    except ColorScheme.DoesNotExist:
+        colorscheme = None
+    try:
+        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
+    except BackgroundImage.DoesNotExist:
+        bgimage = None
+
+    gallery = get_object_or_404(models.Gallery, title_slug=gallery_slug)
     all_images = gallery.image_set.all()
     colorscheme = gallery.colorscheme
     return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request, locals()))
 
-@get_prefs
 def image_show(request, image):
-    # Background image
-    try:
-        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
-    except BackgroundImage.DoesNotExist:
-        pass
-
-    # color scheme
     try:
         colorscheme = ColorScheme.objects.get(use_for_galleries=True)
     except ColorScheme.DoesNotExist:
-        pass
+        colorscheme = None
+    try:
+        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
+    except BackgroundImage.DoesNotExist:
+        bgimage = None
 
     image = get_object_or_404(models.Image, title_slug=image)
     gallery = image.gallery
