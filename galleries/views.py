@@ -30,6 +30,18 @@ def galleries_index(request):
     return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
 
 def galleries_show(request, gallery):
+    # Background image
+    try:
+        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
+    except BackgroundImage.DoesNotExist:
+        pass
+
+    # color scheme
+    try:
+        colorscheme = ColorScheme.objects.get(use_for_galleries=True)
+    except ColorScheme.DoesNotExist:
+        pass
+
     gallery = get_object_or_404(models.Gallery, title_slug=gallery)
     all_images = gallery.image_set.all()
     colorscheme = gallery.colorscheme
@@ -37,6 +49,18 @@ def galleries_show(request, gallery):
 
 @ensure_csrf_cookie
 def image_show(request, image):
+    # Background image
+    try:
+        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
+    except BackgroundImage.DoesNotExist:
+        pass
+
+    # color scheme
+    try:
+        colorscheme = ColorScheme.objects.get(use_for_galleries=True)
+    except ColorScheme.DoesNotExist:
+        pass
+
     image = get_object_or_404(models.Image, title_slug=image)
     gallery = image.gallery
 
