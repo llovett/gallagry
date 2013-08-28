@@ -12,23 +12,27 @@ from galleries.utils import random_string
 from galleries import models
 from settings.models import BackgroundImage, ColorScheme
 
+def get_prefs(view):
+    @wraps(view)
+    def wrapper(request, *args, **kwargs):
+        try:
+            colorscheme = prefs.ColorScheme.objects.get(use_for_galleries=True)
+        except prefs.ColorScheme.DoesNotExist:
+            colorscheme = None
+        try:
+            bgimage = prefs.BackgroundImage.objects.get(use_for_galleries=True)
+        except prefs.BackgroundImage.DoesNotExist:
+            bgimage = None
+        return view(request, colorscheme, bgimage, *args, **kwargs)
+    return wrapper
+
+@get_prefs
 def galleries_index(request):
     all_galleries = models.Gallery.objects.all()
 
-    # Background image
-    try:
-        bgimage = BackgroundImage.objects.get(use_for_galleries=True)
-    except BackgroundImage.DoesNotExist:
-        pass
-
-    # color scheme
-    try:
-        colorscheme = ColorScheme.objects.get(use_for_galleries=True)
-    except ColorScheme.DoesNotExist:
-        pass
-
     return render_to_response("galleries_index.html", locals(), context_instance=RequestContext(request, locals()))
 
+@get_prefs
 def galleries_show(request, gallery):
     # Background image
     try:
@@ -47,7 +51,7 @@ def galleries_show(request, gallery):
     colorscheme = gallery.colorscheme
     return render_to_response("galleries_show.html", locals(), context_instance=RequestContext(request, locals()))
 
-@ensure_csrf_cookie
+@get_prefs
 def image_show(request, image):
     # Background image
     try:
