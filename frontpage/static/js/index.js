@@ -17,7 +17,7 @@ $(document).ready(function(){
     // $.animate takes a callback for when the animation completes
     var reset = function() {
         $(this).css("margin-left", "0%");
-        $(this).animate({ "margin-left": "-100%" }, 3000, 'linear', reset);
+        $(this).animate({ "margin-left": "-100%" }, 6000, 'linear', reset);
     };
 
     // kick it off
